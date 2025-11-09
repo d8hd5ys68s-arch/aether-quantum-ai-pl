@@ -25,6 +25,7 @@ export const metadata: Metadata = {
   description: 'Enterprise-grade artificial intelligence platform built on DocsGPT & Hedera Token Service. Featuring carbon-negative operations, blockchain-verified API tracking, and advanced AI capabilities.',
   keywords: ['AI', 'Blockchain', 'Hedera', 'DocsGPT', 'Enterprise AI', 'Quantum Computing'],
   authors: [{ name: 'Aether AI Team' }],
+  referrer: 'strict-origin-when-cross-origin',
   openGraph: {
     title: 'Aether AI - Enterprise-Grade AI Platform',
     description: 'Revolutionary AI platform powered by DocsGPT and Hedera blockchain technology',
