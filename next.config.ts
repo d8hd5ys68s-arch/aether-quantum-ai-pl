@@ -7,6 +7,9 @@ const nextConfig: NextConfig = {
   // Can be changed to 'export' for static sites
   output: process.env.BUILD_STANDALONE === 'true' ? 'standalone' : undefined,
 
+  // Optimize font loading
+  optimizeFonts: true,
+
   // Enable server actions
   experimental: {
     serverActions: {
@@ -60,6 +63,25 @@ const nextConfig: NextConfig = {
     ],
     // For static export, need to disable default loader
     unoptimized: process.env.BUILD_STANDALONE === 'true',
+  },
+  
+  // Headers for better performance
+  async headers() {
+    return [
+      {
+        source: '/:path*',
+        headers: [
+          {
+            key: 'X-DNS-Prefetch-Control',
+            value: 'on',
+          },
+          {
+            key: 'Strict-Transport-Security',
+            value: 'max-age=63072000; includeSubDomains; preload',
+          },
+        ],
+      },
+    ];
   },
 };
 

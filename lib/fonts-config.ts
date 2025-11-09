@@ -37,6 +37,8 @@ if (shouldSkipFonts) {
       variable: '--font-inter',
       display: 'swap',
       fallback: ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+      preload: true,
+      adjustFontFallback: true, // Improve font loading performance
     });
 
     spaceMono = Space_Mono({
@@ -45,6 +47,8 @@ if (shouldSkipFonts) {
       variable: '--font-space-mono',
       display: 'swap',
       fallback: ['Courier New', 'Courier', 'monospace'],
+      preload: true,
+      adjustFontFallback: true, // Improve font loading performance
     });
   } catch (error) {
     // Fallback if font loading fails
