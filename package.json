@@ -3,11 +3,11 @@
     "private": true,
     "version": "0.1.0",
     "scripts": {
-        "dev": "vite --port 9002",
-        "build": "vite build",
-        "preview": "vite preview --port 9002",
+        "dev": "next dev -p 9002",
+        "build": "next build",
+        "start": "next start -p 9002",
         "verify-build": "bash verify-build.sh",
-        "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+        "lint": "next lint",
         "typecheck": "tsc --noEmit"
     },
     "dependencies": {
