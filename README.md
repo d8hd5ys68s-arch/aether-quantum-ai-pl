@@ -39,9 +39,9 @@
 
 ---
 
-## 🌟 Overview
+## 🌌 Overview
 
-**Aether AI** is an enterprise-grade artificial intelligence platform built on a fine-tuned **DocsGPT** model, enhanced for superior performance in coding, enterprise organization, analytics, and advanced reasoning. What sets Aether apart is its revolutionary integration with **Hedera Token Service (HTS)**, making it the first AI platform to leverage distributed ledger technology for API call management.
+**Aether AI** is an Open-Source enterprise-grade artificial intelligence platform built on a fine-tuned **DocsGPT** model, enhanced for superior performance in coding, enterprise organization, analytics, and advanced reasoning. What sets Aether apart is its revolutionary integration with **Hedera Token Service (HTS)**, making it the first AI platform to leverage distributed ledger technology for API call management.
 
 ### The Vision
 
