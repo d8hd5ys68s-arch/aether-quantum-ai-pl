@@ -1,17 +1,19 @@
 'use client';
 
 import { useState } from 'react';
-import { AnimatedBackground } from '@/src/components/AnimatedBackground';
-import { Navigation } from '@/src/components/Navigation';
-import { HeroSection } from '@/src/components/HeroSection';
-import { FeaturesSection } from '@/src/components/FeaturesSection';
-import { AIDemoSection } from '@/src/components/AIDemoSection';
-import { TechnologySection } from '@/src/components/TechnologySection';
-import { BetaSection } from '@/src/components/BetaSection';
-import { Footer } from '@/src/components/Footer';
-import { ScrollToTop } from '@/src/components/ScrollToTop';
-import { ScrollIndicator } from '@/src/components/ScrollIndicator';
-import { AuthModal } from '@/src/components/AuthModal';
+
+export const dynamic = 'force-dynamic';
+import { AnimatedBackground } from '@/components/AnimatedBackground';
+import { Navigation } from '@/components/Navigation';
+import { HeroSection } from '@/components/HeroSection';
+import { FeaturesSection } from '@/components/FeaturesSection';
+import { AIDemoSection } from '@/components/AIDemoSection';
+import { TechnologySection } from '@/components/TechnologySection';
+import { BetaSection } from '@/components/BetaSection';
+import { Footer } from '@/components/Footer';
+import { ScrollToTop } from '@/components/ScrollToTop';
+import { ScrollIndicator } from '@/components/ScrollIndicator';
+import { AuthModal } from '@/components/AuthModal';
 
 export default function Home() {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);

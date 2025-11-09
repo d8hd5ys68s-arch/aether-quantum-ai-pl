@@ -123,7 +123,7 @@ export async function submitTopicMessage(
 
     return {
       transactionId: txResponse.transactionId.toString(),
-      consensusTimestamp: receipt.consensusTimestamp?.toDate().toISOString() || new Date().toISOString(),
+      consensusTimestamp: (receipt as any).consensusTimestamp?.toDate().toISOString() || new Date().toISOString(),
       status: Status._fromCode(receipt.status.valueOf()).toString(),
       cost: cost / 100_000_000, // Convert tinybars to HBAR
     };

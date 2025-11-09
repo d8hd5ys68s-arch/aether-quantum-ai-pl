@@ -2,10 +2,9 @@ import type { Metadata } from 'next';
 import { Inter, Space_Mono } from 'next/font/google';
 import { Toaster } from 'sonner';
 import { ErrorBoundary } from 'react-error-boundary';
-import { ErrorFallback } from '@/src/ErrorFallback';
-import '@/src/main.css';
-import '@/src/styles/theme.css';
-import '@/src/index.css';
+import { ErrorFallback } from '@/components/ErrorFallback';
+import './globals.css';
+import './theme.css';
 
 const inter = Inter({
   subsets: ['latin'],

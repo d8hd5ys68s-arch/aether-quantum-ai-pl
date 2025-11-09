@@ -119,7 +119,7 @@ export class Database {
       const newResetTime = new Date(now.getTime() + windowMs);
       await sql`
         UPDATE users
-        SET api_call_count = 0, rate_limit_reset = ${newResetTime}
+        SET api_call_count = 0, rate_limit_reset = ${newResetTime.toISOString()}
         WHERE user_id = ${user_id}
       `;
       return { allowed: true, remaining: maxRequests - 1 };

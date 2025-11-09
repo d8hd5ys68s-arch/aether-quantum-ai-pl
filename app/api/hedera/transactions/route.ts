@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { authConfig } from '@/lib/auth/config';
+import { auth } from '@/lib/auth/config';
 import { Database } from '@/lib/db';
 import { getTransactionDetails } from '@/lib/hedera/client';
 
@@ -11,7 +10,7 @@ export const dynamic = 'force-dynamic';
 export async function GET(request: NextRequest) {
   try {
     // Get session
-    const session = await getServerSession(authConfig);
+    const session = await auth();
     const userId = session?.user?.id;
 
     const { searchParams } = new URL(request.url);

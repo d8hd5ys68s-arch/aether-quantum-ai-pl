@@ -6,13 +6,11 @@
         "dev": "next dev -p 9002",
         "build": "next build",
         "start": "next start -p 9002",
-        "verify-build": "bash verify-build.sh",
         "lint": "next lint",
         "typecheck": "tsc --noEmit"
     },
     "dependencies": {
         "@auth/core": "^0.40.0",
-        "@github/spark": "^0.39.0",
         "@google/generative-ai": "^0.21.0",
         "@hashgraph/sdk": "^2.54.0",
         "@heroicons/react": "^2.2.0",
@@ -67,7 +65,7 @@
         "octokit": "^4.1.2",
         "react": "^19.0.0",
         "react-day-picker": "^9.6.7",
-        "react-dom": "^19.0.0",
+        "react-dom": "^19.2.0",
         "react-error-boundary": "^6.0.0",
         "react-hook-form": "^7.66.0",
         "react-resizable-panels": "^2.1.7",

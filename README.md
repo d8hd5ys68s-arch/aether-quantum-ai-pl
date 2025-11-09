@@ -4,13 +4,13 @@
 
 ![Aether AI Banner](.github/aether-banner.svg)
 
-**Enterprise-Grade AI Platform Built on DocsGPT & Hedera Token Service**
+**Enterprise-Grade AI Platform Built with Google Gemini & Hedera Hashgraph**
 
 [![Next.js](https://img.shields.io/badge/Next.js-15.3.3-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
-[![DocsGPT](https://img.shields.io/badge/DocsGPT-Fine--tuned-4A90E2?style=for-the-badge)](https://docsgpt.cloud/)
-[![Hedera](https://img.shields.io/badge/Hedera-Token_Service-00D4AA?style=for-the-badge&logo=hedera)](https://hedera.com/)
+[![Google Gemini](https://img.shields.io/badge/Gemini-2.0_Flash-4285F4?style=for-the-badge&logo=google)](https://ai.google.dev/)
+[![Hedera](https://img.shields.io/badge/Hedera-Consensus_Service-00D4AA?style=for-the-badge&logo=hedera)](https://hedera.com/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
-[![Firebase](https://img.shields.io/badge/Firebase-Latest-FFCA28?style=for-the-badge&logo=firebase)](https://firebase.google.com/)
+[![Vercel](https://img.shields.io/badge/Vercel-Postgres-000000?style=for-the-badge&logo=vercel)](https://vercel.com/)
 [![Carbon Negative](https://img.shields.io/badge/Carbon-Negative-00B140?style=for-the-badge&logo=leaf)](https://hedera.com/)
 
 [Overview](#-overview) • [Architecture](#-architecture) • [Quick Start](#-quick-start) • [Hedera Integration](#-hedera-token-service-integration) • [Documentation](#-documentation)
@@ -41,7 +41,7 @@
 
 ## 🌌 Overview
 
-**Aether AI** is an Open-Source enterprise-grade artificial intelligence platform built on a fine-tuned **DocsGPT** model, enhanced for superior performance in coding, enterprise organization, analytics, and advanced reasoning. What sets Aether apart is its revolutionary integration with **Hedera Token Service (HTS)**, making it the first AI platform to leverage distributed ledger technology for API call management.
+**Aether AI** is an Open-Source enterprise-grade artificial intelligence platform powered by **Google Gemini 2.0 Flash**, designed for advanced AI interactions with enterprise-level security and transparency. What sets Aether apart is its revolutionary integration with **Hedera Consensus Service**, making it the first AI platform to leverage distributed ledger technology for immutable API call tracking and carbon-negative operations.
 
 ### The Vision
 
@@ -58,33 +58,35 @@ Traditional AI platforms face critical challenges:
 
 ## 💡 What Makes Aether Different
 
-### Built on DocsGPT Foundation
+### Powered by Google Gemini 2.0 Flash
 
-DocsGPT is an open-source generative AI platform designed for **hallucination-free responses** with source citations. Aether AI extends this foundation with:
+Aether AI leverages **Google's latest Gemini 2.0 Flash** model for lightning-fast, intelligent responses:
 
-- **Fine-tuned models** optimized for:
-  - Advanced code generation and analysis
-  - Enterprise-level document understanding
-  - Complex reasoning and decision-making
-  - Multi-format data processing (PDF, DOCX, CSV, XLSX, code repositories)
+- **Advanced AI capabilities**:
+  - Natural language understanding and generation
+  - Code analysis and generation
+  - Multi-turn conversational context
+  - Real-time streaming responses
+  - Cost-effective token usage
 
-- **Enhanced capabilities** including:
-  - Superior accuracy in technical documentation
-  - Integration with external APIs and services
-  - Customizable prompt engineering
-  - Enterprise security and compliance
+- **Enterprise features**:
+  - Custom system prompts for specialized behavior
+  - Chat history persistence in PostgreSQL
+  - Token usage tracking and cost calculation
+  - Rate limiting and abuse prevention
+  - Full audit trail for compliance
 
-### Powered by Hedera Token Service
+### Powered by Hedera Consensus Service
 
 Hedera's hashgraph technology provides unprecedented advantages:
 
-| Metric | Hedera HTS | Traditional Blockchain | Cloud APIs |
-|--------|------------|----------------------|------------|
+| Metric | Hedera Consensus | Traditional Blockchain | Cloud APIs |
+|--------|-----------------|----------------------|------------|
 | **Transaction Speed** | 10,000 TPS | 15-30 TPS | Varies |
 | **Finality** | 3-5 seconds | 10-60 minutes | Instant |
-| **Cost per Transaction** | <$0.001 USD | $2-50 USD | $0.01-0.10 |
+| **Cost per Message** | <$0.001 USD | $2-50 USD | $0.01-0.10 |
 | **Carbon Footprint** | **Negative** ♻️ | Positive | Positive |
-| **Audit Trail** | Native receipts | Manual | Limited |
+| **Audit Trail** | Immutable receipts | Manual | Limited |
 | **Predictability** | Fixed fees | Variable gas | Variable pricing |
 
 ---
@@ -95,24 +97,24 @@ Hedera's hashgraph technology provides unprecedented advantages:
 
 ```mermaid
 graph LR
-    A[DocsGPT Core] --> B[Fine-Tuned Models]
-    B --> C[Enterprise Extensions]
+    A[Google Gemini 2.0 Flash] --> B[Custom System Prompts]
+    B --> C[Chat Engine]
     C --> D[Aether AI Platform]
 
-    B1[Code Analysis] --> D
-    B2[Analytics Engine] --> D
-    B3[Reasoning Layer] --> D
+    B1[PostgreSQL Storage] --> D
+    B2[NextAuth.js] --> D
+    B3[Hedera Tracking] --> D
 
-    style A fill:#4A90E2
+    style A fill:#4285F4
     style D fill:#6366f1,color:#fff
 ```
 
-**DocsGPT Integration:**
-- Multi-model support (Gemini 2.5 Pro, GPT-4, Claude, local models)
-- Document ingestion from multiple sources
-- Source citation and verification
-- Hallucination reduction algorithms
-- Enterprise-ready API management
+**Gemini 2.0 Flash Integration:**
+- Latest Google AI model with multimodal capabilities
+- Real-time AI chat with context persistence
+- Token usage tracking and cost calculation
+- Custom personality with Aether-specific prompts
+- Enterprise-ready with rate limiting and security
 
 ### Blockchain Infrastructure
 
@@ -123,15 +125,15 @@ graph TB
     end
 
     subgraph "Hedera Network"
-        B[HTS Smart Contract]
+        B[Topic Service]
         C[Consensus Service]
-        D[Token Service]
+        D[Mirror Node]
         E[Receipt Generation]
     end
 
     subgraph "Results"
         F[AI Response]
-        G[Transaction Receipt]
+        G[Consensus Receipt]
         H[Audit Record]
     end
 
@@ -144,13 +146,13 @@ graph TB
     E --> H
 
     style B fill:#00D4AA
-    style D fill:#00D4AA
+    style C fill:#00D4AA
     style G fill:#FFD700
 ```
 
-**Hedera HTS Benefits:**
+**Hedera Consensus Benefits:**
 - **Speed**: 10,000 transactions per second
-- **Cost**: Fixed fees under $0.001 per API call
+- **Cost**: Fixed fees under $0.001 per message
 - **Efficiency**: Hashgraph consensus (vs. proof-of-work)
 - **Carbon Negative**: Lowest energy consumption + carbon offsets
 - **Transparency**: Every API call recorded on public ledger
@@ -165,39 +167,39 @@ graph TB
 ```mermaid
 graph TB
     subgraph "Client Layer"
-        A[Next.js Frontend]
-        B[React Components]
+        A[Next.js 15 Frontend]
+        B[React 19 Components]
         C[Real-time UI]
     end
 
     subgraph "Application Layer"
-        D[Server Actions]
-        E[API Routes]
+        D[Next.js API Routes]
+        E[NextAuth.js v5]
         F[Middleware]
     end
 
     subgraph "AI Layer"
-        G[DocsGPT Fine-tuned Model]
-        H[Gemini 2.5 Pro Fallback]
-        I[Document Processing]
-        J[Code Analysis]
+        G[Google Gemini 2.0 Flash]
+        H[Custom System Prompts]
+        I[Chat History]
+        J[Token Tracking]
     end
 
     subgraph "Hedera Layer"
-        K[HTS Smart Contract]
+        K[Consensus Topic]
         L[API Call Tracking]
         M[Receipt Generation]
         N[Audit Logging]
     end
 
     subgraph "Data Layer"
-        O[Firebase Firestore]
+        O[Vercel Postgres]
         P[User Management]
-        Q[Chat History]
+        Q[Chat Messages]
     end
 
     subgraph "Monitoring"
-        R[Sentry]
+        R[Error Tracking]
         S[Hedera Mirror Node]
     end
 
@@ -212,7 +214,7 @@ graph TB
     K --> N
     N --> S
 
-    style G fill:#4A90E2,color:#fff
+    style G fill:#4285F4,color:#fff
     style K fill:#00D4AA,color:#fff
     style M fill:#FFD700
 ```
@@ -224,32 +226,27 @@ sequenceDiagram
     participant U as User
     participant A as Aether AI
     participant RL as Rate Limiter
-    participant DG as DocsGPT Model
-    participant HTS as Hedera Smart Contract
-    participant HC as Hedera Consensus
-    participant DB as Firestore
+    participant GM as Gemini 2.0 Flash
+    participant HCS as Hedera Consensus
+    participant DB as Vercel Postgres
 
     U->>A: Submit query
-    A->>RL: Check rate limit
+    A->>RL: Check rate limit (PostgreSQL)
     RL-->>A: Allowed
 
-    A->>HTS: Initiate API call transaction
-    Note over HTS: Create token transaction
-    HTS->>HC: Submit to consensus
-    HC-->>HTS: Consensus reached (3-5s)
+    A->>GM: Process query with context
+    GM-->>A: AI response + tokens
 
-    A->>DG: Process query
-    DG-->>A: AI response
+    A->>HCS: Submit API call to topic
+    Note over HCS: Submit message transaction
+    HCS->>HCS: Reach consensus (3-5s)
+    HCS-->>A: Consensus receipt
 
-    HTS->>HTS: Generate receipt
-    Note over HTS: Cost: <$0.001 USD
-    HTS-->>A: Transaction receipt
-
-    A->>DB: Store response + receipt
+    A->>DB: Store message + receipt + tokens
     DB-->>U: Display response
 
     Note over U,DB: Full audit trail available
-    Note over HTS: Carbon-negative operation ♻️
+    Note over HCS: Carbon-negative operation ♻️
 ```
 
 ### Enterprise Data Flow
@@ -260,78 +257,79 @@ graph LR
     B -->|Valid| C[Rate Check]
     B -->|Invalid| X[Reject]
 
-    C -->|Within Limit| D[HTS Transaction]
+    C -->|Within Limit| D[Hedera Message]
     C -->|Exceeded| Y[Queue/Reject]
 
     D --> E[Consensus]
-    E --> F[DocsGPT Processing]
+    E --> F[Gemini Processing]
     F --> G[Response]
 
     D --> H[Receipt Generation]
     H --> I[Audit Log]
 
     G --> J[User Response]
-    I --> K[Compliance Database]
+    I --> K[PostgreSQL Database]
 
     style D fill:#00D4AA
     style H fill:#FFD700
-    style F fill:#4A90E2
+    style F fill:#4285F4
 ```
 
 ---
 
-## 🔗 Hedera Token Service Integration
+## 🔗 Hedera Consensus Service Integration
 
 ### Why Hedera?
 
 Hedera Hashgraph is a **third-generation distributed ledger technology** that uses a unique consensus algorithm to achieve:
 
 1. **Unparalleled Speed**: 10,000+ transactions per second with 3-5 second finality
-2. **Predictable Low Cost**: Fixed fees (not gas-based), averaging <$0.001 per transaction
+2. **Predictable Low Cost**: Fixed fees (not gas-based), averaging <$0.001 per message
 3. **Energy Efficiency**: Uses significantly less energy than proof-of-work blockchains
 4. **Carbon Negative**: Purchases carbon offsets to achieve net-negative emissions
 5. **Enterprise Security**: aBFT (asynchronous Byzantine Fault Tolerant) consensus
-6. **Regulatory Compliance**: Built-in KYC, freeze, and compliance features
+6. **Immutable Audit Trail**: Every message permanently recorded on public ledger
 
-### How Aether Uses HTS
+### How Aether Uses Hedera Consensus Service
 
-**1. API Call Tokenization**
+**1. API Call Tracking**
 
-Every AI API call is represented as a micro-transaction on Hedera:
+Every AI API call is recorded as a message on Hedera Consensus Service:
 
 ```typescript
-// Example: Submitting an AI query through HTS
-const apiCall = {
+// Example: Tracking an AI query on Hedera
+const apiCallData = {
   userId: "user_123",
-  query: "Explain quantum computing",
+  queryHash: hashQuery("Explain quantum computing"),
   timestamp: Date.now(),
-  model: "docsgpt-aether-v1"
+  model: "gemini-2.0-flash-exp",
+  tokensUsed: 1250
 };
 
-// Create HTS transaction
-const transaction = await new TokenTransferTransaction()
-  .addTokenTransfer(AETHER_TOKEN_ID, userId, -1)
-  .addTokenTransfer(AETHER_TOKEN_ID, TREASURY_ACCOUNT, 1)
-  .setTransactionMemo(JSON.stringify(apiCall))
+// Submit message to consensus topic
+const transaction = await new TopicMessageSubmitTransaction()
+  .setTopicId(AETHER_TOPIC_ID)
+  .setMessage(JSON.stringify(apiCallData))
   .execute(client);
 
 // Get receipt (immutable proof)
 const receipt = await transaction.getReceipt(client);
+const consensusTimestamp = receipt.consensusTimestamp;
 ```
 
 **2. Cost Benefits**
 
 Traditional AI API pricing:
-- OpenAI GPT-4: ~$0.03 per 1K tokens (input) + $0.06 per 1K tokens (output)
-- Average query cost: $0.10 - $0.50
+- Google Gemini Flash: ~$0.075 per 1M input tokens + $0.30 per 1M output tokens
+- Average query cost: $0.001 - $0.01
 
-Aether AI with HTS:
-- AI processing: Same model costs
-- **Blockchain tracking**: <$0.001 (vs. traditional database logging)
-- **Audit receipts**: Free (native to Hedera)
+Aether AI with Hedera:
+- AI processing: Same Gemini model costs
+- **Blockchain tracking**: <$0.001 per API call (vs. traditional logging)
+- **Audit receipts**: Included (native to Hedera)
 - **Compliance reporting**: Automated (vs. manual processes)
 
-**Net savings**: 40-60% reduction in operational costs for enterprise deployments.
+**Net savings**: Enterprise-grade audit trail at minimal cost overhead.
 
 **3. Audit Trail & Compliance**
 
@@ -340,40 +338,36 @@ Every API call generates an immutable record containing:
 ```json
 {
   "transactionId": "0.0.123456@1234567890.123456789",
-  "consensusTimestamp": "2025-01-08T12:34:56.789Z",
+  "consensusTimestamp": "2025-01-09T12:34:56.789Z",
   "status": "SUCCESS",
   "apiCall": {
     "userId": "user_123",
-    "query": "[HASH]",
-    "model": "docsgpt-aether-v1",
-    "tokensUsed": 1250
+    "queryHash": "sha256_hash_of_query",
+    "model": "gemini-2.0-flash-exp",
+    "tokensUsed": 1250,
+    "costUSD": 0.0001
   },
-  "cost": {
-    "hederaFee": 0.0001,
-    "aetherTokens": 1,
-    "usdEquivalent": 0.0001
-  },
-  "receipt": {
-    "receiptStatus": "SUCCESS",
-    "accountId": "0.0.123456",
-    "exchangeRate": {...}
+  "hedera": {
+    "topicId": "0.0.XXXXXX",
+    "messageFee": 0.0001,
+    "sequenceNumber": 42
   },
   "carbonImpact": {
     "netEmissions": -0.00001,
-    "offsetCredits": "0.0.789012"
+    "savedVsTraditional": 0.00005
   }
 }
 ```
 
-**4. Smart Contract Capabilities**
+**4. Privacy & Security**
 
-Aether deploys Solidity smart contracts on Hedera for:
+Aether ensures privacy while maintaining auditability:
 
-- **Rate limiting**: On-chain enforcement prevents abuse
-- **Usage quotas**: Programmable limits per user/organization
-- **Automatic billing**: Token-based payment system
-- **Compliance rules**: KYC, geographical restrictions, data residency
-- **SLA guarantees**: Programmatic refunds for service failures
+- **Query Hashing**: Actual queries are hashed before blockchain submission
+- **Local Storage**: Full query content stored in private PostgreSQL database
+- **Selective Disclosure**: Share audit trails without exposing query content
+- **User Control**: Users own their data, blockchain provides proof
+- **Compliance Ready**: Meet regulatory requirements with immutable logs
 
 **5. Carbon-Negative Operations**
 
@@ -387,37 +381,28 @@ Traditional AI API Call:
 
 Aether AI API Call:
 - Cloud infrastructure: 0.05 kWh
-- HTS transaction: 0.00017 kWh
+- Hedera consensus: 0.00017 kWh
 - Carbon offset: -50g CO2
 - Net CO2: -20g (carbon negative!)
 ```
 
-### HTS Configuration
+### Hedera Configuration
 
 ```yaml
 # Hedera Network Configuration
 hedera:
-  network: mainnet  # or testnet
+  network: testnet  # or mainnet
   accountId: ${HEDERA_ACCOUNT_ID}
   privateKey: ${HEDERA_PRIVATE_KEY}
-
-  # Smart Contract
-  contractId: ${HEDERA_CONTRACT_ID}
-
-  # Token Configuration
-  tokens:
-    aether:
-      tokenId: "0.0.XXXXXX"
-      symbol: "AETH"
-      decimals: 2
-      initialSupply: 1000000
+  topicId: ${HEDERA_TOPIC_ID}
 
   # API Call Tracking
   apiTracking:
     enabled: true
-    costPerCall: 0.0001  # in HBAR
+    costPerMessage: 0.0001  # in HBAR
     receiptGeneration: true
     auditLogging: true
+    privacyMode: hash  # hash queries before submission
 ```
 
 ---
@@ -469,8 +454,8 @@ hedera:
 ### Prerequisites
 
 - **Node.js** 18.17 or later
-- **npm** or **yarn**
-- **Firebase account** (free tier available)
+- **npm** or **pnpm**
+- **Vercel account** (free tier available)
 - **Google AI API key** ([Get free key](https://aistudio.google.com/app/apikey))
 - **Hedera account** ([Create testnet account](https://portal.hedera.com/register))
 
@@ -498,22 +483,27 @@ hedera:
 
 4. **Configure environment**
    ```bash
+   # Required: NextAuth.js
+   NEXTAUTH_URL=http://localhost:9002
+   NEXTAUTH_SECRET=your_secret_key  # Generate with: openssl rand -base64 32
+
    # Required: AI API Key
    GOOGLE_GENAI_API_KEY=your_gemini_api_key
 
-   # Required: Hedera Configuration
+   # Required: Vercel Postgres (auto-injected on Vercel)
+   POSTGRES_URL=your_postgres_connection_string
+
+   # Optional: Hedera Configuration
    HEDERA_NETWORK=testnet  # or mainnet
    HEDERA_ACCOUNT_ID=0.0.xxxxx
    HEDERA_PRIVATE_KEY=your_hedera_private_key
-   HEDERA_CONTRACT_ID=0.0.xxxxx  # Deploy contract first
-
-   # Optional: Sentry monitoring
-   NEXT_PUBLIC_SENTRY_DSN=your_sentry_dsn
+   HEDERA_TOPIC_ID=0.0.xxxxx  # Create topic via /api/hedera/setup
    ```
 
-5. **Deploy Hedera Smart Contract** (if not using existing)
+5. **Set up database** (if running locally)
    ```bash
-   npm run deploy:hedera-contract
+   # Run the schema from lib/db/schema.sql
+   # Or use Vercel Postgres (recommended)
    ```
 
 6. **Run development server**
@@ -526,36 +516,30 @@ hedera:
    http://localhost:9002
    ```
 
-8. **View Hedera Integration Demo** (NEW!)
+8. **Create Hedera topic** (optional, for blockchain tracking)
    ```
-   http://localhost:9002/hedera-demo
+   POST http://localhost:9002/api/hedera/setup
    ```
-
-   The demo page showcases all Phase 2 UI components:
-   - Transaction history with blockchain receipts
-   - Cost tracking dashboard with real-time metrics
-   - Carbon impact visualization
-   - Usage analytics with interactive charts
-   - Transaction receipt components
 
 ### First Run Checklist
 
 - [ ] Environment variables configured in `.env.local`
-- [ ] Firebase project created and configured
-- [ ] Hedera testnet account created
-- [ ] Smart contract deployed to Hedera
-- [ ] Firestore security rules deployed
+- [ ] Vercel Postgres database created (or local PostgreSQL)
+- [ ] Database schema deployed from `lib/db/schema.sql`
+- [ ] NEXTAUTH_SECRET generated
+- [ ] Google Gemini API key configured
 - [ ] Development server running on port 9002
 - [ ] Can access the homepage
 - [ ] Can register a new account
 - [ ] Can send a chat message
-- [ ] Hedera transaction receipt generated
+- [ ] Chat history persisted in database
+- [ ] (Optional) Hedera topic created for blockchain tracking
 
 ---
 
 ## ⚙️ Configuration
 
-### Hedera Smart Contract Deployment
+### Hedera Topic Setup
 
 1. **Create Hedera Account**
    ```bash
@@ -564,169 +548,166 @@ hedera:
    # Save your Account ID and Private Key
    ```
 
-2. **Compile Smart Contract**
-   ```bash
-   npm run compile:contracts
-   ```
-
-3. **Deploy to Hedera**
-   ```bash
-   npm run deploy:hedera
-   # Outputs: Contract ID (0.0.XXXXXX)
-   ```
-
-4. **Update Environment**
+2. **Add credentials to environment**
    ```bash
    # Add to .env.local
-   HEDERA_CONTRACT_ID=0.0.XXXXXX
+   HEDERA_ACCOUNT_ID=0.0.XXXXXX
+   HEDERA_PRIVATE_KEY=302e...
    ```
 
-### DocsGPT Model Configuration
+3. **Create consensus topic via API**
+   ```bash
+   curl -X POST http://localhost:9002/api/hedera/setup
+   # Returns: Topic ID (0.0.XXXXXX)
+   ```
 
-The platform uses a fine-tuned DocsGPT model with Gemini 2.5 Pro as the underlying LLM:
+4. **Update environment with topic ID**
+   ```bash
+   # Add to .env.local
+   HEDERA_TOPIC_ID=0.0.XXXXXX
+   ```
+
+### Gemini AI Configuration
+
+The platform uses Google Gemini 2.0 Flash with custom system prompts:
 
 ```typescript
-// src/ai/genkit.ts
-export const ai = genkit({
-  plugins: [
-    googleAI(),
-    docsGPTPlugin({
-      modelName: 'docsgpt-aether-v1',
-      baseModel: 'gemini-2.5-pro',
-      fineTuning: {
-        codeGeneration: true,
-        enterpriseAnalytics: true,
-        advancedReasoning: true,
-      }
-    })
-  ],
-  model: 'googleai/gemini-2.5-pro',
+// lib/ai/gemini.ts
+import { GoogleGenerativeAI } from '@google/generative-ai';
+
+const genAI = new GoogleGenerativeAI(process.env.GOOGLE_GENAI_API_KEY!);
+
+export const model = genAI.getGenerativeModel({
+  model: 'gemini-2.0-flash-exp',
+  systemInstruction: `You are Aether, an advanced AI assistant...`,
 });
 ```
 
-### Firebase Configuration
+### Database Configuration
 
-Update `src/firebase/config.ts` with your Firebase project:
+Aether uses Vercel Postgres (PostgreSQL):
 
 ```typescript
-export const firebaseConfig = {
-  apiKey: "your-api-key",
-  authDomain: "your-app.firebaseapp.com",
-  projectId: "your-project-id",
-  storageBucket: "your-app.appspot.com",
-  messagingSenderId: "123456789",
-  appId: "1:123456789:web:abcdef"
-};
+// lib/db/index.ts
+import { sql } from '@vercel/postgres';
+
+// Schema includes:
+// - users: User accounts with NextAuth
+// - chat_messages: AI conversations
+// - hedera_transactions: Blockchain audit trail
 ```
+
+Deploy schema from `lib/db/schema.sql` to your database.
 
 ---
 
 ## 📚 API Reference
 
-### Hedera Integration APIs
+### Chat API
 
-#### `submitChatMessageWithHTS(message: string)`
+#### `POST /api/chat`
 
-Processes a chat message with Hedera transaction tracking.
+Sends a chat message and receives AI response with optional Hedera tracking.
 
-**Flow:**
-1. Validate user authentication
-2. Check rate limits (Firestore + HTS)
-3. Create Hedera transaction
-4. Process with DocsGPT model
-5. Store response + receipt
-6. Return AI response + transaction details
-
-**Returns:**
+**Request Body:**
 ```typescript
 {
-  success: boolean;
-  data?: {
-    aiResponse: string;
-    hederaReceipt: {
-      transactionId: string;
-      status: string;
-      consensusTimestamp: string;
-      cost: number;
-      carbonImpact: number;
-    };
+  message: string;
+  chatHistory?: Array<{role: string; content: string}>;
+}
+```
+
+**Flow:**
+1. Validate user authentication (or use 'anonymous')
+2. Check rate limits (PostgreSQL)
+3. Process with Gemini 2.0 Flash
+4. (Optional) Submit to Hedera consensus topic
+5. Store in database
+6. Return AI response + metadata
+
+**Response:**
+```typescript
+{
+  response: string;
+  metadata: {
+    tokensUsed: number;
+    cost: number;
+    model: string;
+    hederaTransactionId?: string;
   };
-  error?: string;
 }
 ```
 
 **Example:**
-```typescript
-const result = await submitChatMessageWithHTS(
-  "Generate a React component for user authentication"
-);
-
-console.log("AI Response:", result.data.aiResponse);
-console.log("Transaction ID:", result.data.hederaReceipt.transactionId);
-console.log("Cost:", result.data.hederaReceipt.cost, "HBAR");
-console.log("Carbon Impact:", result.data.hederaReceipt.carbonImpact, "kg CO2");
+```bash
+curl -X POST http://localhost:9002/api/chat \
+  -H "Content-Type: application/json" \
+  -d '{"message": "Explain quantum computing"}'
 ```
 
-#### `getHederaAuditLog(userId: string, startDate: Date, endDate: Date)`
+#### `GET /api/chat`
 
-Retrieves audit log from Hedera mirror nodes.
+Retrieves chat history for authenticated user.
 
-**Returns:**
+**Response:**
+```typescript
+{
+  messages: Array<{
+    id: string;
+    role: 'user' | 'ai';
+    content: string;
+    tokensUsed?: number;
+    cost?: number;
+    createdAt: string;
+  }>;
+}
+```
+
+### Hedera APIs
+
+#### `GET /api/hedera/transactions`
+
+Retrieves Hedera transaction history for authenticated user.
+
+**Response:**
 ```typescript
 {
   transactions: Array<{
     id: string;
-    timestamp: string;
-    query: string;
-    model: string;
-    cost: number;
+    transactionId: string;
+    consensusTimestamp: string;
     status: string;
+    cost: number;
+    carbonImpact: number;
   }>;
   summary: {
-    totalCalls: number;
+    totalTransactions: number;
     totalCost: number;
-    carbonSaved: number;
+    totalCarbon: number;
   };
 }
 ```
 
-### DocsGPT Integration APIs
+#### `POST /api/hedera/setup`
 
-#### `analyzeCodeRepository(repoUrl: string)`
+Creates a new Hedera consensus topic (one-time setup).
 
-Analyzes entire code repositories using fine-tuned DocsGPT.
-
-**Parameters:**
-- `repoUrl`: GitHub/GitLab repository URL
-
-**Returns:**
+**Response:**
 ```typescript
 {
-  analysis: {
-    languages: string[];
-    structure: object;
-    dependencies: string[];
-    issues: Array<{
-      file: string;
-      line: number;
-      severity: 'low' | 'medium' | 'high';
-      message: string;
-    }>;
-    suggestions: string[];
-  };
-  hederaReceipt: TransactionReceipt;
+  topicId: string;
+  message: string;
 }
 ```
 
-#### `processEnterpriseDocument(file: File)`
+### Authentication API
 
-Processes documents with DocsGPT document intelligence.
+NextAuth.js endpoints at `/api/auth/[...nextauth]`:
 
-**Supported formats:**
-- PDF, DOCX, XLSX, CSV
-- Markdown, RST, HTML
-- Code files (JS, TS, PY, etc.)
-- Images (with OCR)
+- `POST /api/auth/signin` - Sign in with email/password
+- `POST /api/auth/signup` - Create new account
+- `GET /api/auth/session` - Get current session
+- `POST /api/auth/signout` - Sign out
 
 ---
 
@@ -798,122 +779,97 @@ Enterprise deployment supports:
 
 ## 🚢 Deployment
 
-### GitHub Pages Deployment
+### Vercel Deployment (Recommended)
 
-The application is automatically deployed to GitHub Pages via GitHub Actions when changes are pushed to the `main` branch.
+Aether AI is optimized for deployment on Vercel with zero configuration.
 
-#### Configuration
+#### Quick Deploy
 
-The project is configured with:
-- **Vite base path**: `'./'` for proper asset paths on custom domain
-- **Build output**: `dist/` folder (containing compiled JS/CSS, not TSX files)
-- **Custom domain**: `www.itsaether.ai` (via CNAME file)
-- **GitHub Actions workflow**: Automatically builds and deploys on push to main
+1. **Push to GitHub**
+   ```bash
+   git push origin main
+   ```
 
-#### Manual Build & Verification
+2. **Import to Vercel**
+   - Visit [vercel.com/new](https://vercel.com/new)
+   - Import your GitHub repository
+   - Vercel auto-detects Next.js
 
-```bash
-# 1. Build the application
-npm run build
+3. **Add Vercel Postgres**
+   - Go to Storage tab in Vercel dashboard
+   - Create Postgres database
+   - Connection string auto-injected as `POSTGRES_URL`
 
-# 2. Verify build output (automated check)
-npm run verify-build
+4. **Run database schema**
+   - Open Vercel Postgres Query tab
+   - Copy and run contents of `lib/db/schema.sql`
 
-# 3. Verify build output manually
-ls -la dist/
-# Should show: index.html, assets/ folder with .js and .css files
+5. **Configure environment variables**
+   ```bash
+   # In Vercel dashboard → Settings → Environment Variables
 
-# 4. Verify asset paths in built index.html
-cat dist/index.html
-# Should reference: ./assets/index-*.js and ./assets/index-*.css
-# Should NOT reference: /src/main.tsx or .tsx files
+   NEXTAUTH_URL=https://your-domain.vercel.app
+   NEXTAUTH_SECRET=<generate with: openssl rand -base64 32>
+   GOOGLE_GENAI_API_KEY=<your-gemini-api-key>
+
+   # Optional: Hedera
+   HEDERA_ACCOUNT_ID=0.0.xxxxx
+   HEDERA_PRIVATE_KEY=302e...
+   HEDERA_TOPIC_ID=0.0.xxxxx
+   ```
+
+6. **Deploy**
+   - Click "Deploy" in Vercel
+   - Your app will be live at `your-project.vercel.app`
+
+#### Custom Domain
+
+1. Add custom domain in Vercel dashboard
+2. Update DNS records as instructed
+3. Update `NEXTAUTH_URL` to match your domain
+
+#### Automatic Deployments
+
+- **Production**: Pushes to `main` branch
+- **Preview**: Pull requests get preview URLs
+- **Rollback**: One-click rollback to previous deployment
+
+### Alternative: Docker Deployment
+
+```dockerfile
+# Dockerfile (create if needed)
+FROM node:18-alpine
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY . .
+RUN npm run build
+EXPOSE 9002
+CMD ["npm", "start"]
 ```
 
-The `verify-build` script automatically checks that:
-- ✅ Build output exists in `dist/` folder
-- ✅ No `.tsx` file references in built HTML
-- ✅ No `/src/` path references
-- ✅ Asset paths use `./assets/` (correct for GitHub Pages)
-- ✅ JavaScript and CSS files are present
-
-#### Troubleshooting
-
-If you see MIME type errors or 404s on GitHub Pages:
-
-1. **Check asset URLs**: Open Developer Tools → Network tab
-   - ✅ Correct: Requests to `/assets/index-*.js` and `.css` files
-   - ❌ Wrong: Requests to `/src/main.tsx` or other `.tsx` files
-
-2. **Clear cache**: After fixing build/publish issues
-   - Hard refresh: `Ctrl+Shift+R` (Windows/Linux) or `Cmd+Shift+R` (Mac)
-   - Or open in incognito/private browsing mode
-
-3. **Verify GitHub Pages settings**:
-   - Source: GitHub Actions
-   - Custom domain: `www.itsaether.ai`
-   - Enforce HTTPS: Enabled ✅
-
-4. **Check GitHub Actions workflow**:
-   - Verify the workflow completed successfully
-   - Ensure it deployed the `dist/` folder (not `src/`)
-
-### Production Deployment to Firebase
-
 ```bash
-# 1. Build the application
-npm run build
-
-# 2. Deploy Hedera contracts to mainnet
-npm run deploy:hedera -- --network mainnet
-
-# 3. Configure Firebase secrets
-firebase functions:config:set \
-  genai.api_key="YOUR_API_KEY" \
-  hedera.account_id="0.0.xxxxx" \
-  hedera.private_key="YOUR_PRIVATE_KEY" \
-  hedera.contract_id="0.0.xxxxx"
-
-# 4. Deploy to Firebase
-firebase deploy
-```
-
-### Docker Deployment
-
-```bash
-# Build Docker image
+# Build and run
 docker build -t aether-ai .
-
-# Run container
 docker run -p 9002:9002 \
+  -e NEXTAUTH_URL=http://localhost:9002 \
+  -e NEXTAUTH_SECRET=$SECRET \
   -e GOOGLE_GENAI_API_KEY=$GENAI_KEY \
-  -e HEDERA_ACCOUNT_ID=$HEDERA_ACCOUNT \
-  -e HEDERA_PRIVATE_KEY=$HEDERA_KEY \
+  -e POSTGRES_URL=$POSTGRES_URL \
   aether-ai
 ```
 
-### Kubernetes Deployment
+### Environment Variables Reference
 
-```yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: aether-ai
-spec:
-  replicas: 3
-  template:
-    spec:
-      containers:
-      - name: aether-ai
-        image: aether-ai:latest
-        env:
-        - name: HEDERA_NETWORK
-          value: "mainnet"
-        - name: HEDERA_ACCOUNT_ID
-          valueFrom:
-            secretKeyRef:
-              name: hedera-credentials
-              key: account-id
-```
+| Variable | Required | Description |
+|----------|----------|-------------|
+| `NEXTAUTH_URL` | ✅ | Your deployment URL |
+| `NEXTAUTH_SECRET` | ✅ | Random 32-char string |
+| `GOOGLE_GENAI_API_KEY` | ✅ | Google AI API key |
+| `POSTGRES_URL` | ✅ | PostgreSQL connection string |
+| `HEDERA_ACCOUNT_ID` | Optional | Hedera account ID |
+| `HEDERA_PRIVATE_KEY` | Optional | Hedera private key |
+| `HEDERA_TOPIC_ID` | Optional | Hedera topic ID |
 
 ---
 
@@ -923,97 +879,104 @@ spec:
 
 ```
 ItsAetherAI/
-├── src/
+├── app/
+│   ├── layout.tsx              # Root layout with fonts
+│   ├── page.tsx                # Home page
+│   ├── globals.css             # Global styles
+│   ├── theme.css               # Theme variables
+│   └── api/                    # API Routes
+│       ├── auth/[...nextauth]/ # NextAuth.js
+│       ├── chat/               # AI chat endpoint
+│       └── hedera/             # Hedera endpoints
+│           ├── transactions/
+│           └── setup/
+├── components/
+│   ├── AnimatedBackground.tsx
+│   ├── Navigation.tsx
+│   ├── HeroSection.tsx
+│   ├── FeaturesSection.tsx
+│   ├── AIDemoSection.tsx       # Real AI chat interface
+│   ├── TechnologySection.tsx
+│   ├── BetaSection.tsx
+│   ├── Footer.tsx
+│   ├── AuthModal.tsx           # Login/Register
+│   ├── ErrorFallback.tsx
+│   └── ui/                     # Shadcn UI components
+├── lib/
 │   ├── ai/
-│   │   ├── flows/              # DocsGPT + Genkit flows
-│   │   ├── docsgpt-config.ts   # DocsGPT fine-tuning
-│   │   └── genkit.ts           # AI configuration
-│   ├── hedera/                  # NEW: Hedera integration
-│   │   ├── contracts/          # Smart contracts (Solidity)
-│   │   ├── client.ts           # Hedera SDK client
-│   │   ├── transactions.ts     # Transaction builders
-│   │   └── receipts.ts         # Receipt processing
-│   ├── app/
-│   │   ├── actions.ts          # Server actions
-│   │   ├── api/
-│   │   │   └── hedera/         # Hedera API routes
-│   │   └── dashboard/          # Analytics dashboard
-│   ├── components/
-│   │   ├── hedera/             # Hedera UI components (Phase 2 ✅)
-│   │   │   ├── transaction-history.tsx
-│   │   │   ├── cost-dashboard.tsx
-│   │   │   ├── carbon-impact-widget.tsx
-│   │   │   ├── transaction-receipt.tsx
-│   │   │   ├── usage-analytics.tsx
-│   │   │   └── index.ts        # Barrel exports
-│   │   └── ai/                 # AI interface components
-│   ├── lib/
-│   │   ├── hedera-utils.ts     # Hedera utilities
-│   │   └── audit-logger.ts     # Compliance logging
-│   └── middleware.ts
-├── contracts/                   # Solidity smart contracts
-│   ├── AetherAPITracker.sol
-│   └── AetherToken.sol
+│   │   └── gemini.ts           # Google Gemini integration
+│   ├── auth/
+│   │   └── config.ts           # NextAuth.js config
+│   ├── db/
+│   │   ├── schema.sql          # PostgreSQL schema
+│   │   └── index.ts            # Database queries
+│   ├── hedera/
+│   │   └── client.ts           # Hedera SDK client
+│   └── utils.ts                # Utilities
 ├── docs/
-│   ├── HEDERA_SETUP.md          # Hedera setup guide
-│   ├── HEDERA_PHASE2_COMPONENTS.md  # UI components documentation ✅
-│   ├── RATE_LIMITING.md         # Rate limiting documentation
-│   └── SECURITY_*.md            # Security documentation
-└── scripts/
-    ├── deploy-contracts.ts
-    └── generate-audit-report.ts
+│   ├── SETUP.md                # Deployment guide
+│   └── PRD.md                  # Product requirements
+├── CLAUDE.md                   # Developer instructions
+└── README.md                   # This file
 ```
 
 ### Development Workflow
 
 1. **Local Development**
    ```bash
-   # Use Hedera testnet
    npm run dev
+   # Runs on http://localhost:9002
    ```
 
-2. **Testing Hedera Integration**
+2. **Type Checking**
    ```bash
-   # Run HTS transaction tests
-   npm run test:hedera
+   npm run typecheck
+   # Runs TypeScript compiler check
    ```
 
-3. **Smart Contract Development**
+3. **Building for Production**
    ```bash
-   # Compile contracts
-   npm run compile:contracts
+   npm run build
+   # Creates optimized production build
 
-   # Test contracts
-   npm run test:contracts
+   npm run start
+   # Runs production server locally
+   ```
 
-   # Deploy to testnet
-   npm run deploy:hedera -- --network testnet
+4. **Database Migrations**
+   ```bash
+   # Apply schema changes
+   # Run SQL from lib/db/schema.sql in Vercel Postgres Query tab
+   ```
+
+5. **Hedera Topic Setup**
+   ```bash
+   # Create topic via API
+   curl -X POST http://localhost:9002/api/hedera/setup
    ```
 
 ---
 
 ## 🗺 Roadmap
 
-### Phase 1: Foundation (Current)
-- [x] DocsGPT fine-tuned model integration
-- [x] Gemini 2.5 Pro backend
-- [x] Firebase authentication & Firestore
-- [x] Basic UI and chat interface
-- [ ] Hedera testnet integration
-- [ ] Smart contract development
-- [ ] API call tracking prototype
+### Phase 1: Foundation ✅ Complete
+- [x] Google Gemini 2.0 Flash integration
+- [x] NextAuth.js v5 authentication
+- [x] Vercel Postgres database
+- [x] Next.js 15 with App Router
+- [x] Real AI chat interface
+- [x] Chat history persistence
+- [x] Rate limiting system
+- [x] Token usage tracking
 
-### Phase 2: Hedera Integration (Q1 2025)
-- [x] **UI Components**: Complete Phase 2 UI component suite
-- [x] **Transaction History**: Blockchain-verified API call tracking
-- [x] **Cost Dashboard**: Real-time cost tracking and budget monitoring
-- [x] **Carbon Impact Widget**: Carbon-negative metrics visualization
-- [x] **Usage Analytics**: Comprehensive analytics with interactive charts
-- [x] **Transaction Receipts**: Embeddable receipt cards for chat interface
-- [x] **Demo Page**: Full integration showcase at /hedera-demo
-- [ ] **HTS Smart Contracts**: Deploy production contracts
-- [ ] **Live Integration**: Connect UI to real Hedera transactions
-- [ ] **Compliance Tools**: Automated audit report generation
+### Phase 2: Hedera Integration (In Progress)
+- [x] **Hedera SDK**: Client setup and topic management
+- [x] **API Endpoints**: /api/hedera/setup and /api/hedera/transactions
+- [x] **Database Schema**: Hedera transaction tracking table
+- [ ] **Live Integration**: Connect chat to Hedera consensus
+- [ ] **Transaction UI**: Display Hedera receipts in chat
+- [ ] **Audit Dashboard**: User-facing transaction history
+- [ ] **Compliance Tools**: Automated report generation
 
 ### Phase 3: Enterprise Features (Q2 2025)
 - [ ] **Multi-Tenancy**: Isolated enterprise deployments
@@ -1114,12 +1077,13 @@ SOFTWARE.
 
 ## 🙏 Acknowledgments
 
-- **[DocsGPT](https://docsgpt.cloud/)** - Foundation AI platform for hallucination-free responses
-- **[Hedera](https://hedera.com/)** - Revolutionary hashgraph DLT and Token Service
-- **[Google Gemini Team](https://ai.google.dev/)** - Gemini 2.5 Pro AI model
-- **[Firebase Team](https://firebase.google.com/)** - Backend infrastructure
-- **[Next.js Team](https://nextjs.org/)** - Modern React framework
-- **Hedera Ecosystem** - Smart contract tools and libraries
+- **[Google Gemini](https://ai.google.dev/)** - Gemini 2.0 Flash AI model
+- **[Hedera](https://hedera.com/)** - Revolutionary hashgraph DLT and Consensus Service
+- **[Vercel](https://vercel.com/)** - Hosting platform and Postgres database
+- **[Next.js Team](https://nextjs.org/)** - Next.js 15 App Router framework
+- **[NextAuth.js](https://authjs.dev/)** - Authentication for Next.js
+- **[Shadcn/ui](https://ui.shadcn.com/)** - Beautiful UI components
+- **[Tailwind CSS](https://tailwindcss.com/)** - Utility-first CSS framework
 - **Open Source Community** - Countless contributors and maintainers
 
 ---
@@ -1127,17 +1091,18 @@ SOFTWARE.
 ## 📞 Support & Resources
 
 ### Documentation
-- **[CLAUDE.md](CLAUDE.md)** - Developer instructions
-- **[Hedera Setup Guide](docs/HEDERA_SETUP.md)** - Hedera account and topic setup
-- **[Hedera Phase 2 Components](docs/HEDERA_PHASE2_COMPONENTS.md)** - UI components documentation ✅ NEW
-- **[Rate Limiting Guide](docs/RATE_LIMITING.md)** - Rate limiting implementation
-- **[Security Documentation](SECURITY_*.md)** - Security implementation guides
+- **[CLAUDE.md](CLAUDE.md)** - Complete developer guide for Claude Code
+- **[SETUP.md](docs/SETUP.md)** - Deployment and configuration guide
+- **[PRD.md](docs/PRD.md)** - Product requirements and design specs
+- **[lib/db/schema.sql](lib/db/schema.sql)** - PostgreSQL database schema
 
 ### External Resources
-- **DocsGPT Docs**: https://docs.docsgpt.cloud/
-- **Hedera Documentation**: https://docs.hedera.com/
+- **Next.js Docs**: https://nextjs.org/docs
+- **NextAuth.js Docs**: https://authjs.dev
+- **Google Gemini Docs**: https://ai.google.dev/docs
+- **Hedera Docs**: https://docs.hedera.com/
 - **Hedera Portal**: https://portal.hedera.com/
-- **HTS Guide**: https://docs.hedera.com/hedera/core-concepts/tokens
+- **Vercel Postgres**: https://vercel.com/docs/storage/vercel-postgres
 
 ### Community
 - **GitHub Issues**: [Report bugs](https://github.com/d8hd5ys68s-arch/ItsAetherAI/issues)
@@ -1175,7 +1140,7 @@ For enterprise deployments, custom implementations, or partnership inquiries:
 
 Made with ❤️ by the Aether AI Team
 
-**Powered by DocsGPT** | **Built on Hedera** | **Enhanced with Gemini 2.5 Pro**
+**Powered by Google Gemini** | **Built on Hedera** | **Deployed on Vercel**
 
 [![Follow on GitHub](https://img.shields.io/github/followers/d8hd5ys68s-arch?style=social)](https://github.com/d8hd5ys68s-arch)
 [![Star on GitHub](https://img.shields.io/github/stars/d8hd5ys68s-arch/ItsAetherAI?style=social)](https://github.com/d8hd5ys68s-arch/ItsAetherAI)

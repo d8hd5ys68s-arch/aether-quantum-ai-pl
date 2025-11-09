@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { authConfig } from '@/lib/auth/config';
+import { auth } from '@/lib/auth/config';
 import { geminiAI } from '@/lib/ai/gemini';
 import { trackAPICall } from '@/lib/hedera/client';
 import { Database } from '@/lib/db';
@@ -17,7 +16,7 @@ interface ChatRequest {
 export async function POST(request: NextRequest) {
   try {
     // Get session
-    const session = await getServerSession(authConfig);
+    const session = await auth();
     const userId = session?.user?.id || 'anonymous';
 
     const body: ChatRequest = await request.json();
@@ -162,7 +161,7 @@ export async function POST(request: NextRequest) {
 export async function GET(request: NextRequest) {
   try {
     // Get session
-    const session = await getServerSession(authConfig);
+    const session = await auth();
     const userId = session?.user?.id || 'anonymous';
 
     const { searchParams } = new URL(request.url);
