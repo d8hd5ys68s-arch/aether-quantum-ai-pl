@@ -34,20 +34,20 @@ const features = [
 
 export function FeaturesSection() {
   return (
-    <section id="features" className="py-16 md:py-28 relative z-10">
+    <section id="features" className="py-20 md:py-32 relative z-10">
       <div className="max-w-[1400px] mx-auto px-4 md:px-8">
-        <div className="text-center mb-12 md:mb-20">
+        <div className="text-center mb-16 md:mb-24">
           <AnimatedElement delay={0.1}>
-            <h2 className="text-3xl md:text-5xl lg:text-6xl font-extrabold mb-4 md:mb-5 text-gradient">
+            <h2 className="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-5 md:mb-6 text-gradient" style={{ textShadow: '0 0 40px oklch(0.62 0.24 295 / 0.3)' }}>
               The Foundational Pillars of Aether
             </h2>
-            <p className="text-base md:text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed px-4">
+            <p className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed px-4" style={{ textShadow: '0 2px 15px rgba(0, 0, 0, 0.5)' }}>
               Our unique architecture combines cutting-edge AI with secure decentralized infrastructure to deliver unparalleled intelligence.
             </p>
           </AnimatedElement>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-10">
           {features.map((feature, index) => (
             <FeatureCard key={index} {...feature} delay={0.2 + index * 0.15} />
           ))}
@@ -115,23 +115,23 @@ function FeatureCard({ icon: Icon, title, description, link, gradient, delay }: 
   return (
     <div
       ref={cardRef}
-      className={`glass-card p-6 md:p-10 group transition-all duration-800 ${
-        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+      className={`glass-card p-8 md:p-12 group transition-all duration-900 ${
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
       }`}
       style={{
-        transform: `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) ${tilt.x || tilt.y ? 'scale(1.03)' : 'scale(1)'}`
+        transform: `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) ${tilt.x || tilt.y ? 'scale(1.05)' : 'scale(1)'}`
       }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
-      <div className={`w-14 h-14 md:w-[72px] md:h-[72px] rounded-[16px] md:rounded-[20px] flex items-center justify-center mb-6 md:mb-8 bg-gradient-to-r ${gradient} shadow-[0_0_15px_oklch(0.62_0.24_295/0.4),0_0_30px_oklch(0.60_0.22_250/0.3)] transition-all duration-400 group-hover:scale-110 group-hover:rotate-[7deg] group-hover:shadow-[0_0_30px_oklch(0.62_0.24_295/0.7),0_0_60px_oklch(0.60_0.22_250/0.5)]`}>
-        <Icon size={28} weight="fill" className="text-white md:w-9 md:h-9" />
+      <div className={`w-16 h-16 md:w-20 md:h-20 rounded-[18px] md:rounded-[24px] flex items-center justify-center mb-8 md:mb-10 bg-gradient-to-r ${gradient} shadow-[0_0_20px_oklch(0.62_0.24_295/0.5),0_0_40px_oklch(0.60_0.22_250/0.4)] transition-all duration-500 group-hover:scale-115 group-hover:rotate-[9deg] group-hover:shadow-[0_0_40px_oklch(0.62_0.24_295/0.9),0_0_80px_oklch(0.60_0.22_250/0.7),0_0_120px_oklch(0.75_0.16_195/0.5)]`}>
+        <Icon size={32} weight="fill" className="text-white md:w-10 md:h-10" />
       </div>
-      <h3 className="text-xl md:text-2xl font-semibold mb-4 md:mb-5 text-white">{title}</h3>
-      <p className="text-sm md:text-base text-gray-400 mb-6 md:mb-8 leading-relaxed">{description}</p>
-      <button className="inline-flex items-center text-primary text-base md:text-lg font-medium group-hover:text-[oklch(0.72_0.24_295)] transition-colors">
+      <h3 className="text-2xl md:text-3xl font-semibold mb-5 md:mb-6 text-white" style={{ textShadow: '0 2px 20px rgba(0, 0, 0, 0.5)' }}>{title}</h3>
+      <p className="text-base md:text-lg text-gray-400 mb-8 md:mb-10 leading-relaxed">{description}</p>
+      <button className="inline-flex items-center text-primary text-lg md:text-xl font-medium group-hover:text-[oklch(0.72_0.24_295)] transition-colors duration-300">
         {link}
-        <ArrowRight size={18} weight="bold" className="ml-2 md:ml-3 group-hover:translate-x-1 transition-transform md:w-5 md:h-5" />
+        <ArrowRight size={20} weight="bold" className="ml-3 md:ml-4 group-hover:translate-x-2 transition-transform duration-300 md:w-6 md:h-6" />
       </button>
     </div>
   )
