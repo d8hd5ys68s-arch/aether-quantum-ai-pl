@@ -62,7 +62,7 @@ export function BetaSection() {
                   <Button
                     type="submit"
                     disabled={isSubmitting}
-                    className="btn-gradient px-6 md:px-10 h-12 md:h-14 whitespace-nowrap text-base md:text-xl"
+                    className="btn-gradient px-6 md:px-10 h-12 md:h-14 whitespace-nowrap text-base md:text-xl touch-manipulation"
                   >
                     {isSubmitting ? 'Processing...' : 'Request Access Key'}
                   </Button>

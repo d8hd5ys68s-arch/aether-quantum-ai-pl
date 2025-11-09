@@ -17,14 +17,21 @@ A sophisticated decentralized AI platform interface showcasing cutting-edge quan
 - **Purpose**: Immediately communicate platform capabilities and establish futuristic aesthetic
 - **Trigger**: Page load
 - **Progression**: Data scramble effect on logo → Hero fade-in → Stat counters animate upward → CTA buttons appear
-- **Success criteria**: All animations complete smoothly, stats reach target values, CTAs are clickable
+- **Success criteria**: All animations complete smoothly, stats reach target values, CTAs are clickable and touch-optimized
+
+### Scroll Progress Indicator
+- **Functionality**: Dynamic gradient progress bar at top of viewport showing scroll position
+- **Purpose**: Provide visual feedback of reading progress and add polish to the experience
+- **Trigger**: Page scroll
+- **Progression**: User scrolls → Bar fills proportionally with gradient animation → Reaches 100% at bottom
+- **Success criteria**: Smooth animation, accurate percentage tracking, visually appealing gradient
 
 ### AI Chat Interface
 - **Functionality**: Interactive chat with AI using external API, suggestion chips, message history, copy/reset features
 - **Purpose**: Demonstrate AI capabilities and provide hands-on experience with the platform
 - **Trigger**: User types message or clicks suggestion chip
 - **Progression**: User input → Loading state → AI response streams in → Copy button appears on hover → User can reset conversation
-- **Success criteria**: Messages send/receive correctly, loading states work, copy function works, chat scrolls properly
+- **Success criteria**: Messages send/receive correctly, loading states work, copy function works, chat scrolls properly, touch-friendly on mobile
 
 ### Authentication System
 - **Functionality**: Login/Register modals with email/password and social auth, user state management
@@ -51,9 +58,11 @@ A sophisticated decentralized AI platform interface showcasing cutting-edge quan
 - **No Auth State**: Anonymous users can browse and use chat but signup persists to their anonymous ID
 - **API Failures**: Graceful error messages in toast notifications, retry logic for transient failures
 - **Empty Chat**: Default greeting message always present, reset button restores initial state
-- **Mobile Interactions**: Custom cursor disabled, nav collapses to hamburger, cards stack vertically
-- **Long Messages**: Chat bubbles wrap text, scrollbar appears when needed
+- **Mobile Interactions**: Custom cursor disabled, nav collapses to hamburger, cards stack vertically, touch-optimized buttons with touch-manipulation
+- **Long Messages**: Chat bubbles wrap text, scrollbar appears when needed with smooth overflow
 - **Form Validation**: Real-time feedback with visual states (valid/invalid), clear error messages
+- **Performance**: Reduced particle count on mobile, debounced resize handlers, optimized animations
+- **Accessibility**: Focus-visible states for keyboard navigation, ARIA labels on interactive elements, reduced motion support
 
 ## Design Direction
 The design should feel cutting-edge, premium, and otherworldly - like stepping into a quantum computing interface from the future. Think glassmorphic Apple aesthetics meets cyberpunk energy with sophisticated restraint. Rich interface with animated elements, but purposeful rather than distracting.
@@ -115,6 +124,10 @@ Animations should feel fluid and purposeful, using physics-based easing to creat
   - Hero text scales down from 96px to 48px
   - Stat grid changes from 4 columns to 2
   - Feature cards stack single column
-  - Nav collapses to hamburger menu
-  - Chat maintains full functionality with mobile-optimized touch targets
+  - Nav collapses to hamburger menu with animated slide-in items
+  - Chat maintains full functionality with mobile-optimized touch targets (44px minimum)
   - Custom cursor disabled, default cursor restored
+  - Reduced particle effects for better performance
+  - Optimized backdrop blur and shadow effects
+  - Touch-manipulation for all interactive elements preventing double-tap zoom
+  - Scroll padding adjusted for mobile nav height

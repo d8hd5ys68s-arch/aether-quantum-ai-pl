@@ -4,14 +4,14 @@ export function AnimatedBackground() {
   return (
     <>
       <div className="fixed inset-0 z-[-2] overflow-hidden bg-background">
-        <div className="absolute top-[-10%] left-[-10%] w-[70vmax] h-[70vmax] rounded-full opacity-15 blur-[100px]"
+        <div className="absolute top-[-10%] left-[-10%] w-[70vmax] h-[70vmax] rounded-full opacity-15 blur-[100px] will-change-transform"
           style={{
             background: 'linear-gradient(135deg, oklch(0.62 0.24 295), oklch(0.60 0.22 250), oklch(0.75 0.16 195))',
             animation: 'morph 12s ease-in-out infinite both alternate, hueRotate 20s linear infinite',
             animationDelay: '-3s, 0s'
           }}
         />
-        <div className="absolute bottom-[-15%] right-[-15%] w-[80vmax] h-[80vmax] rounded-full opacity-15 blur-[100px]"
+        <div className="absolute bottom-[-15%] right-[-15%] w-[80vmax] h-[80vmax] rounded-full opacity-15 blur-[100px] will-change-transform"
           style={{
             background: 'linear-gradient(135deg, oklch(0.62 0.24 295), oklch(0.60 0.22 250), oklch(0.75 0.16 195))',
             animation: 'morph 12s ease-in-out infinite both alternate, hueRotate 20s linear infinite',
@@ -19,14 +19,14 @@ export function AnimatedBackground() {
             transformOrigin: '70% 30%'
           }}
         />
-        <div className="absolute top-[30%] right-[-5%] w-[50vmax] h-[50vmax] rounded-full opacity-10 blur-[100px]"
+        <div className="absolute top-[30%] right-[-5%] w-[50vmax] h-[50vmax] rounded-full opacity-10 blur-[100px] will-change-transform hidden md:block"
           style={{
             background: 'linear-gradient(135deg, oklch(0.62 0.24 295), oklch(0.60 0.22 250), oklch(0.75 0.16 195))',
             animation: 'morph 12s ease-in-out infinite both alternate, hueRotate 20s linear infinite',
             animationDelay: '-9s, -10s'
           }}
         />
-        <div className="absolute bottom-[-5%] left-[20%] w-[60vmax] h-[60vmax] rounded-full opacity-8 blur-[100px]"
+        <div className="absolute bottom-[-5%] left-[20%] w-[60vmax] h-[60vmax] rounded-full opacity-8 blur-[100px] will-change-transform hidden md:block"
           style={{
             background: 'linear-gradient(135deg, oklch(0.62 0.24 295), oklch(0.60 0.22 250), oklch(0.75 0.16 195))',
             animation: 'morph 12s ease-in-out infinite both alternate, hueRotate 20s linear infinite',
@@ -51,8 +51,9 @@ function ParticleOverlay() {
     if (!ctx) return
 
     const particles: Particle[] = []
-    const particleCount = window.innerWidth < 768 ? 40 : 80
-    const maxDistance = 120
+    const isMobile = window.innerWidth < 768
+    const particleCount = isMobile ? 30 : 80
+    const maxDistance = isMobile ? 100 : 120
 
     const particleColors = [
       'rgba(139, 92, 246, 0.4)',
@@ -71,8 +72,9 @@ function ParticleOverlay() {
       constructor(canvasWidth: number, canvasHeight: number) {
         this.x = Math.random() * canvasWidth
         this.y = Math.random() * canvasHeight
-        this.vx = Math.random() * 0.4 - 0.2
-        this.vy = Math.random() * 0.4 - 0.2
+        const speed = isMobile ? 0.3 : 0.4
+        this.vx = Math.random() * speed - speed / 2
+        this.vy = Math.random() * speed - speed / 2
         this.radius = Math.random() * 1.5 + 0.5
         this.color = particleColors[Math.floor(Math.random() * particleColors.length)]
       }
@@ -140,8 +142,17 @@ function ParticleOverlay() {
     resizeCanvas()
     animate()
 
-    window.addEventListener('resize', resizeCanvas)
-    return () => window.removeEventListener('resize', resizeCanvas)
+    let resizeTimeout: NodeJS.Timeout
+    const handleResize = () => {
+      clearTimeout(resizeTimeout)
+      resizeTimeout = setTimeout(resizeCanvas, 100)
+    }
+
+    window.addEventListener('resize', handleResize)
+    return () => {
+      window.removeEventListener('resize', handleResize)
+      clearTimeout(resizeTimeout)
+    }
   }, [])
 
   return (

@@ -68,7 +68,7 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="bg-[oklch(0.10_0_0/0.9)] border border-white/8 backdrop-blur-[40px] max-w-[calc(100vw-2rem)] md:max-w-lg p-6 md:p-10 mx-4">
+      <DialogContent className="bg-[oklch(0.10_0_0/0.95)] border border-white/8 backdrop-blur-[40px] max-w-[calc(100vw-2rem)] md:max-w-lg p-6 md:p-10 mx-4 rounded-3xl">
         <DialogHeader>
           <DialogTitle className="text-2xl md:text-3xl font-bold text-white text-center mb-6 md:mb-8">
             {isLogin ? 'Access Aether Network' : 'Initialize New Aether ID'}
@@ -107,7 +107,7 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
           <Button
             type="submit"
             disabled={isSubmitting}
-            className="btn-gradient w-full text-lg md:text-xl h-12 md:h-14"
+            className="btn-gradient w-full text-lg md:text-xl h-12 md:h-14 touch-manipulation"
           >
             {isSubmitting ? 'Processing...' : isLogin ? 'Authenticate Protocol' : 'Register Account'}
           </Button>
@@ -118,7 +118,7 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
             <div className="w-full border-t border-gray-700/50" />
           </div>
           <div className="relative flex justify-center">
-            <span className="bg-[oklch(0.06_0_0)] px-3 text-xs md:text-sm text-gray-500">
+            <span className="bg-[oklch(0.10_0_0)] px-3 text-xs md:text-sm text-gray-500">
               or connect with
             </span>
           </div>
@@ -130,7 +130,7 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
             onClick={handleGoogleLogin}
             disabled={isSubmitting}
             variant="outline"
-            className="px-3 md:px-6 py-3 md:py-4 h-auto flex items-center justify-center bg-white/5 border-white/15 hover:bg-accent/20 hover:border-accent text-sm md:text-base"
+            className="px-3 md:px-6 py-3 md:py-4 h-auto flex items-center justify-center bg-white/5 border-white/15 hover:bg-accent/20 hover:border-accent text-sm md:text-base touch-manipulation"
           >
             <GoogleLogo size={18} weight="bold" className="mr-2 md:mr-3 md:w-5 md:h-5" />
             Google ID
@@ -152,7 +152,7 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
           <button
             type="button"
             onClick={() => setIsLogin(!isLogin)}
-            className="text-accent font-medium hover:text-[oklch(0.85_0.16_195)] transition-colors"
+            className="text-accent font-medium hover:text-[oklch(0.85_0.16_195)] transition-colors touch-manipulation"
           >
             {isLogin ? 'Initialize New Account' : 'Log In Instead'}
           </button>

@@ -100,7 +100,7 @@ export function Navigation({ onLoginClick }: NavigationProps) {
           </div>
 
           <div className="flex items-center space-x-2 md:space-x-4">
-            <Button onClick={onLoginClick} className="btn-gradient text-sm md:text-base px-4 md:px-8 h-9 md:h-10">
+            <Button onClick={onLoginClick} className="btn-gradient text-sm md:text-base px-4 md:px-8 h-9 md:h-10 touch-manipulation">
               Login
             </Button>
             <button
@@ -114,35 +114,35 @@ export function Navigation({ onLoginClick }: NavigationProps) {
       </nav>
 
       {isMobileMenuOpen && (
-        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-background/90 backdrop-blur-[40px] opacity-100 transition-opacity duration-300">
+        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-background/95 backdrop-blur-[40px] animate-[fadeIn_0.3s_ease-out]">
           <button
             onClick={() => setIsMobileMenuOpen(false)}
-            className="absolute top-6 right-6 md:top-8 md:right-8 text-white"
+            className="absolute top-6 right-6 md:top-8 md:right-8 text-white hover:text-accent transition-colors"
           >
             <X size={40} className="md:w-12 md:h-12" />
           </button>
           <div className="flex flex-col space-y-6 md:space-y-8 px-6">
             <button
               onClick={() => scrollToSection('features')}
-              className="text-2xl md:text-3xl font-bold text-gray-300 text-center py-3 md:py-4 hover:text-white hover:scale-105 transition-all"
+              className="text-2xl md:text-3xl font-bold text-gray-300 text-center py-3 md:py-4 hover:text-white hover:scale-105 transition-all animate-[slideInFromLeft_0.3s_ease-out_0.1s_backwards]"
             >
               Features
             </button>
             <button
               onClick={() => scrollToSection('ai-demo')}
-              className="text-2xl md:text-3xl font-bold text-gray-300 text-center py-3 md:py-4 hover:text-white hover:scale-105 transition-all"
+              className="text-2xl md:text-3xl font-bold text-gray-300 text-center py-3 md:py-4 hover:text-white hover:scale-105 transition-all animate-[slideInFromLeft_0.3s_ease-out_0.2s_backwards]"
             >
               AI Demo
             </button>
             <button
               onClick={() => scrollToSection('technology')}
-              className="text-2xl md:text-3xl font-bold text-gray-300 text-center py-3 md:py-4 hover:text-white hover:scale-105 transition-all"
+              className="text-2xl md:text-3xl font-bold text-gray-300 text-center py-3 md:py-4 hover:text-white hover:scale-105 transition-all animate-[slideInFromLeft_0.3s_ease-out_0.3s_backwards]"
             >
               Technology
             </button>
             <button
               onClick={() => scrollToSection('beta')}
-              className="text-2xl md:text-3xl font-bold text-gray-300 text-center py-3 md:py-4 hover:text-white hover:scale-105 transition-all"
+              className="text-2xl md:text-3xl font-bold text-gray-300 text-center py-3 md:py-4 hover:text-white hover:scale-105 transition-all animate-[slideInFromLeft_0.3s_ease-out_0.4s_backwards]"
             >
               Join Beta
             </button>

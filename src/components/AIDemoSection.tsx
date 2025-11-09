@@ -2,7 +2,6 @@ import { useState, useRef, useEffect } from 'react'
 import { PaperPlaneRight, ArrowsClockwise, Check, Copy } from '@phosphor-icons/react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { ScrollArea } from '@/components/ui/scroll-area'
 import { toast } from 'sonner'
 
 interface Message {
@@ -125,13 +124,13 @@ export function AIDemoSection() {
                 <ArrowsClockwise size={18} weight="bold" className="md:w-5 md:h-5" />
               </button>
 
-              <ScrollArea ref={scrollRef} className="flex-1 p-3 md:p-5">
+              <div ref={scrollRef} className="flex-1 p-3 md:p-5 overflow-y-auto">
                 <div className="space-y-4 md:space-y-5">
                   {messages.map((message, index) => (
                     <ChatMessage key={message.id} message={message} isLast={index === messages.length - 1} />
                   ))}
                 </div>
-              </ScrollArea>
+              </div>
 
               <div className="p-3 md:p-5 border-t border-gray-700/50">
                 <div className="flex space-x-2 md:space-x-4 mb-2 md:mb-3">
@@ -146,7 +145,7 @@ export function AIDemoSection() {
                   <Button
                     onClick={() => handleSend()}
                     disabled={!input.trim() || isLoading}
-                    className="btn-gradient w-10 h-10 md:w-14 md:h-14 rounded-full p-0 flex-shrink-0"
+                    className="btn-gradient w-10 h-10 md:w-14 md:h-14 rounded-full p-0 flex-shrink-0 touch-manipulation"
                   >
                     <PaperPlaneRight size={18} weight="fill" className="md:w-6 md:h-6" />
                   </Button>
@@ -180,6 +179,7 @@ interface ChatMessageProps {
 
 function ChatMessage({ message, isLast }: ChatMessageProps) {
   const [copied, setCopied] = useState(false)
+  const [isHovered, setIsHovered] = useState(false)
 
   const handleCopy = async () => {
     await navigator.clipboard.writeText(message.content)
@@ -192,9 +192,11 @@ function ChatMessage({ message, isLast }: ChatMessageProps) {
     <div
       className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'} opacity-0 animate-[slideIn_0.3s_ease-out_forwards]`}
       style={{ animationDelay: isLast ? '0.1s' : '0s' }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
       <div
-        className={`relative max-w-[85%] md:max-w-[80%] lg:max-w-[75%] px-4 md:px-5 py-2.5 md:py-3 rounded-2xl text-white shadow-md text-sm md:text-base ${
+        className={`relative max-w-[85%] md:max-w-[80%] lg:max-w-[75%] px-4 md:px-5 py-2.5 md:py-3 rounded-2xl text-white shadow-md text-sm md:text-base group ${
           message.role === 'user'
             ? 'bg-gradient-to-r from-primary to-[oklch(0.60_0.22_250)] rounded-br-lg'
             : message.role === 'loading'
@@ -207,7 +209,9 @@ function ChatMessage({ message, isLast }: ChatMessageProps) {
         {message.role === 'ai' && (
           <button
             onClick={handleCopy}
-            className="absolute top-2 right-2 bg-black/30 hover:bg-accent border-none rounded px-2 py-1 text-xs opacity-0 group-hover:opacity-100 transition-opacity"
+            className={`absolute top-2 right-2 bg-black/30 hover:bg-accent border-none rounded px-2 py-1 text-xs transition-opacity ${
+              isHovered ? 'opacity-100' : 'opacity-0'
+            }`}
             title="Copy text"
           >
             {copied ? <Check size={12} className="md:w-3.5 md:h-3.5" /> : <Copy size={12} className="md:w-3.5 md:h-3.5" />}

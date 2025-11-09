@@ -9,6 +9,7 @@ import { TechnologySection } from '@/components/TechnologySection'
 import { BetaSection } from '@/components/BetaSection'
 import { Footer } from '@/components/Footer'
 import { ScrollToTop } from '@/components/ScrollToTop'
+import { ScrollIndicator } from '@/components/ScrollIndicator'
 import { AuthModal } from '@/components/AuthModal'
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
+      <ScrollIndicator />
       <AnimatedBackground />
       <Navigation onLoginClick={() => setIsAuthModalOpen(true)} />
       <HeroSection />

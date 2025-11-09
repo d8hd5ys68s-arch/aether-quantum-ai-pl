@@ -29,11 +29,11 @@ export function HeroSection() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3 md:gap-5 justify-center items-center px-4">
-            <Button className="btn-gradient text-base md:text-lg lg:text-xl px-6 md:px-10 py-4 md:py-6 h-auto group w-full sm:w-auto">
+            <Button className="btn-gradient text-base md:text-lg lg:text-xl px-6 md:px-10 py-4 md:py-6 h-auto group w-full sm:w-auto touch-manipulation">
               <Rocket size={20} weight="fill" className="mr-2 md:mr-3 group-hover:rotate-45 transition-transform duration-500 md:w-6 md:h-6" />
               Initiate Aether Protocol
             </Button>
-            <Button variant="outline" className="text-base md:text-lg lg:text-xl px-6 md:px-10 py-4 md:py-6 h-auto group bg-white/5 border-white/15 hover:bg-accent/20 hover:border-accent w-full sm:w-auto">
+            <Button variant="outline" className="text-base md:text-lg lg:text-xl px-6 md:px-10 py-4 md:py-6 h-auto group bg-white/5 border-white/15 hover:bg-accent/20 hover:border-accent w-full sm:w-auto touch-manipulation">
               <PlayCircle size={20} weight="fill" className="mr-2 md:mr-3 group-hover:scale-110 transition-transform duration-300 md:w-6 md:h-6" />
               Explore Aether Universe
             </Button>
