@@ -1,23 +1,10 @@
 import type { Metadata } from 'next';
-import { Inter, Space_Mono } from 'next/font/google';
 import { Toaster } from 'sonner';
 import { ErrorBoundary } from 'react-error-boundary';
 import { ErrorFallback } from '@/components/ErrorFallback';
+import { inter, spaceMono } from '@/lib/fonts-config';
 import './globals.css';
 import './theme.css';
-
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-  display: 'swap',
-});
-
-const spaceMono = Space_Mono({
-  weight: ['400', '700'],
-  subsets: ['latin'],
-  variable: '--font-space-mono',
-  display: 'swap',
-});
 
 export const metadata: Metadata = {
   title: 'Aether AI - Enterprise-Grade AI Platform',

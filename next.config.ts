@@ -3,6 +3,10 @@ import type { NextConfig } from 'next';
 const nextConfig: NextConfig = {
   reactStrictMode: true,
 
+  // Output configuration - default is standalone for Vercel
+  // Can be changed to 'export' for static sites
+  output: process.env.BUILD_STANDALONE === 'true' ? 'standalone' : undefined,
+
   // Enable server actions
   experimental: {
     serverActions: {
@@ -12,11 +16,22 @@ const nextConfig: NextConfig = {
   },
 
   // Webpack configuration for external packages
-  webpack: (config) => {
+  webpack: (config, { isServer }) => {
     config.externals.push({
       'utf-8-validate': 'commonjs utf-8-validate',
       'bufferutil': 'commonjs bufferutil',
     });
+    
+    // Add fallback for font loading failures
+    if (!isServer) {
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+        net: false,
+        tls: false,
+      };
+    }
+    
     return config;
   },
 
@@ -43,6 +58,8 @@ const nextConfig: NextConfig = {
         hostname: 'firebasestorage.googleapis.com',
       },
     ],
+    // For static export, need to disable default loader
+    unoptimized: process.env.BUILD_STANDALONE === 'true',
   },
 };
 
