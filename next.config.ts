@@ -7,9 +7,6 @@ const nextConfig: NextConfig = {
   // Can be changed to 'export' for static sites
   output: process.env.BUILD_STANDALONE === 'true' ? 'standalone' : undefined,
 
-  // Optimize font loading
-  optimizeFonts: true,
-
   // Enable server actions
   experimental: {
     serverActions: {
