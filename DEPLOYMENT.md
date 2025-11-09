@@ -14,6 +14,18 @@ The Aether AI platform is built with:
 - **Google Gemini API** (AI backend)
 - **Hedera Hashgraph** (blockchain integration)
 
+## Dual Deployment Strategy
+
+Aether AI uses a **dual deployment strategy**:
+
+1. **Vercel** (Production): Full application with all features
+2. **GitHub Pages** (Landing): Professional showcase page with redirect
+
+### Why This Approach?
+
+- **Vercel**: Provides full-stack support for API routes, database, authentication, and server-side features
+- **GitHub Pages**: Serves a professional landing page showcasing the platform and directing users to the full application
+
 ## Recommended Deployment: Vercel
 
 Aether AI is designed to be deployed on **Vercel** for full functionality. See [README.md](README.md#-deployment) for complete deployment instructions.
@@ -24,46 +36,53 @@ Aether AI is designed to be deployed on **Vercel** for full functionality. See [
 - Automatic environment variable injection
 - Zero-config deployment
 - Global CDN and edge network
+- Optimized font loading and caching
 
-## GitHub Pages Limitation
+### Font Loading Optimization
 
-**Note:** The GitHub Pages deployment workflow (`.github/workflows/deploy.yml`) exists for legacy compatibility but has significant limitations:
+The application uses **Google Fonts** with intelligent fallback:
+- **On Vercel**: Loads Google Fonts (Inter and Space Mono) with optimized preloading
+- **In CI/restricted environments**: Automatically falls back to system fonts
+- **CSS fallbacks**: Comprehensive font stacks ensure consistent typography
 
-- ❌ **Cannot run API routes** (authentication, AI chat, Hedera integration)
-- ❌ **Cannot connect to database** (PostgreSQL)
-- ❌ **Cannot use server-side features** (NextAuth, server actions)
-- ✅ **Can only serve static redirect page** to the Vercel deployment
+This approach:
+✅ Enables builds in restricted CI environments (no internet needed)
+✅ Provides optimal font loading on Vercel
+✅ Eliminates font preload warnings
+✅ Ensures consistent user experience
 
-### GitHub Pages Workflow
+## GitHub Pages Deployment
 
-The workflow performs these steps:
-1. Builds Next.js application (`npm run build`)
-2. Verifies build output (`npm run verify-build`)
-3. Creates `dist/` directory with redirect page to Vercel
-4. Deploys redirect page to GitHub Pages at `www.itsaether.ai`
+**Purpose:** Professional landing page showcasing Aether AI features
 
-**Build Command:**
-```bash
-npm run build
-```
+The GitHub Pages deployment workflow creates a **static landing page** with:
+- ✅ Glassmorphic design matching Aether AI brand
+- ✅ Feature showcase (Gemini AI, Hedera, Carbon Negative, Security)
+- ✅ Animated background effects
+- ✅ Responsive mobile/desktop design
+- ✅ Clear call-to-action to Vercel deployment
+- ✅ Tech stack display
+- ✅ SEO-optimized meta tags
 
-**Verify Command:**
-```bash
-npm run verify-build
-```
+### What Gets Deployed to GitHub Pages?
 
-**Output Structure:**
-```
-dist/
-├── index.html           # Redirect page to Vercel deployment
-└── CNAME               # Custom domain configuration
-```
+✅ **Deployed to GitHub Pages:**
+- `dist/index.html` - Professional landing page
+- `CNAME` - Custom domain configuration (www.itsaether.ai)
+
+❌ **NOT Available on GitHub Pages:**
+- API routes (authentication, AI chat, Hedera)
+- Database connectivity
+- Server-side features
+- Full application functionality
+
+**For full application access, visit the Vercel deployment at https://its-aether-ai.vercel.app**
 
 ## Automated Deployment (GitHub Pages)
 
 ### GitHub Actions Workflow (`.github/workflows/deploy.yml`)
 
-The GitHub Pages deployment is automated but only serves as a redirect:
+The GitHub Pages deployment is automated and creates a professional landing page:
 
 ```yaml
 on:
@@ -77,25 +96,36 @@ on:
 1. **Checkout** - Clone the repository
 2. **Setup Node** - Install Node.js 20
 3. **Install dependencies** - Run `npm ci`
-4. **Build** - Run `npm run build` (Next.js build to .next/)
-5. **Verify build** - Run `npm run verify-build` (creates dist/ with redirect)
+4. **Build** - Run `npm run build` (builds with font fallbacks)
+5. **Verify build** - Run `npm run verify-build` (creates landing page)
 6. **Copy CNAME** - Ensure custom domain is preserved
 7. **Upload artifact** - Prepare `dist/` for deployment
-8. **Deploy** - Deploy redirect page to GitHub Pages
+8. **Deploy** - Deploy landing page to GitHub Pages
 
-### What Gets Deployed to GitHub Pages?
+### Font Loading in CI
 
-✅ **Deployed to GitHub Pages:**
-- `dist/index.html` - Redirect page to Vercel
-- `CNAME` - Custom domain configuration
+The build system intelligently handles font loading:
+- **Detects network restrictions** in GitHub Actions CI environment
+- **Falls back to system fonts** when Google Fonts unavailable
+- **Uses CSS variables** to ensure consistent styling
+- **Builds successfully** without internet access
 
-❌ **NOT Available on GitHub Pages:**
-- API routes (authentication, AI chat, Hedera)
-- Database connectivity
-- Server-side features
-- Full application functionality
+This ensures reliable builds in any environment.
 
-**For full application access, visit the Vercel deployment.**
+### Landing Page Features
+
+The GitHub Pages landing page includes:
+- **Glassmorphic UI** matching Aether AI design language
+- **Animated gradients** for visual appeal
+- **Feature cards** showcasing:
+  - 🤖 Google Gemini 2.0 Flash AI
+  - 🔗 Hedera Consensus Service
+  - 🌱 Carbon-negative operations
+  - 🔒 Enterprise security & authentication
+- **Tech stack badges** (Next.js, React, TypeScript, PostgreSQL, Hedera)
+- **Responsive design** for all devices
+- **Call-to-action button** linking to Vercel deployment
+- **SEO optimization** with proper meta tags
 
 ## Vercel Deployment (Recommended)
 
