@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Aether AI Banner](.github/assets/aether-banner.svg)
+![Aether AI Banner](.github/aether-banner.svg)
 
 **Enterprise-Grade AI Platform Built on DocsGPT & Hedera Token Service**
 
