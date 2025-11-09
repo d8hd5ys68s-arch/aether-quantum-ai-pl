@@ -1,48 +1,71 @@
 'use client';
 
 import type { PutBlobResult } from '@vercel/blob';
+import { upload } from '@vercel/blob/client';
 import { useState, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { toast } from 'sonner';
 
 export default function AvatarUploadPage() {
   const inputFileRef = useRef<HTMLInputElement>(null);
   const [blob, setBlob] = useState<PutBlobResult | null>(null);
   const [uploading, setUploading] = useState(false);
+  const [progress, setProgress] = useState(0);
 
   return (
     <div className="min-h-screen bg-background text-foreground flex items-center justify-center p-4">
       <div className="max-w-2xl w-full glass-card p-8 md:p-12">
         <h1 className="text-4xl font-bold mb-2 text-gradient">Upload Your Avatar</h1>
-        <p className="text-gray-400 mb-8">Upload an image to Vercel Blob storage</p>
+        <p className="text-gray-400 mb-2">Upload an image to Vercel Blob storage</p>
+        <p className="text-sm text-gray-500 mb-8">
+          Using client-side upload (no file size limit, efficient)
+        </p>
 
         <form
           onSubmit={async (event) => {
             event.preventDefault();
 
             if (!inputFileRef.current?.files) {
-              throw new Error("No file selected");
+              toast.error("No file selected");
+              return;
             }
 
             const file = inputFileRef.current.files[0];
+
+            // Validate file size (optional - client upload has no hard limit)
+            if (file.size > 100 * 1024 * 1024) { // 100MB soft limit
+              toast.error("File too large. Maximum size is 100MB.");
+              return;
+            }
+
             setUploading(true);
+            setProgress(0);
 
             try {
-              const response = await fetch(
-                `/api/avatar/upload?filename=${file.name}`,
-                {
-                  method: 'POST',
-                  body: file,
+              // Client-side upload directly to Vercel Blob
+              // No data goes through your server (efficient!)
+              const newBlob = await upload(file.name, file, {
+                access: 'public',
+                handleUploadUrl: '/api/avatar/upload',
+                onUploadProgress: ({ loaded, total }) => {
+                  setProgress(Math.round((loaded / total) * 100));
                 },
-              );
+              });
 
-              const newBlob = (await response.json()) as PutBlobResult;
               setBlob(newBlob);
+              toast.success('Upload successful!');
+
+              // Reset form
+              if (inputFileRef.current) {
+                inputFileRef.current.value = '';
+              }
             } catch (error) {
               console.error('Upload failed:', error);
-              alert('Upload failed. Please try again.');
+              toast.error(error instanceof Error ? error.message : 'Upload failed. Please try again.');
             } finally {
               setUploading(false);
+              setProgress(0);
             }
           }}
           className="space-y-6"
@@ -65,11 +88,33 @@ export default function AvatarUploadPage() {
           <Button
             type="submit"
             disabled={uploading}
-            className="btn-gradient w-full"
+            className="btn-gradient w-full relative overflow-hidden"
           >
-            {uploading ? 'Uploading...' : 'Upload'}
+            {uploading ? (
+              <>
+                <span className="relative z-10">Uploading... {progress}%</span>
+                <div
+                  className="absolute inset-0 bg-accent/20 transition-all duration-300"
+                  style={{ width: `${progress}%` }}
+                />
+              </>
+            ) : (
+              'Upload'
+            )}
           </Button>
         </form>
+
+        <div className="mt-6 p-4 bg-white/5 border border-white/10 rounded-lg">
+          <h3 className="text-sm font-semibold text-gray-300 mb-2">Features:</h3>
+          <ul className="text-xs text-gray-400 space-y-1">
+            <li>✅ Direct browser-to-storage upload (no server bandwidth used)</li>
+            <li>✅ No file size limit (server upload limited to 4.5MB)</li>
+            <li>✅ Progress tracking</li>
+            <li>✅ Automatic random suffix (prevents cache issues)</li>
+            <li>✅ Content type validation (images only)</li>
+            <li>✅ Global CDN delivery</li>
+          </ul>
+        </div>
 
         {blob && (
           <div className="mt-8 p-6 bg-white/5 border border-white/10 rounded-lg space-y-4">
