@@ -6,6 +6,11 @@ const isStaticExport = process.env.BUILD_MODE === 'static';
 const nextConfig: NextConfig = {
   reactStrictMode: true,
 
+  // For GitHub Pages with custom domain, use root-relative paths
+  ...(isStaticExport && {
+    basePath: '',  // Empty basePath for custom domain
+  }),
+
   // Static export for GitHub Pages
   ...(isStaticExport && {
     output: 'export',
