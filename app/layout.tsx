@@ -4,6 +4,7 @@ import { ErrorBoundary } from 'react-error-boundary';
 import { ErrorFallback } from '@/components/ErrorFallback';
 import { inter, spaceMono } from '@/lib/fonts-config';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import { AetherBackground, ParticleOverlay } from '@/components/AetherBackground';
 import './globals.css';
 import './theme.css';
 import './animations.css';
@@ -32,10 +33,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className="scroll-smooth">
       <body className={`${inter.variable} ${spaceMono.variable} font-sans antialiased`}>
+        {/* Animated backgrounds */}
+        <AetherBackground />
+        <ParticleOverlay />
+
         <ErrorBoundary FallbackComponent={ErrorFallback}>
-          {children}
+          <main className="relative z-10">
+            {children}
+          </main>
           <Toaster
             position="top-right"
             toastOptions={{

@@ -50,10 +50,8 @@ export function Navigation({ onLoginClick }: NavigationProps) {
   return (
     <>
       <nav
-        className={`fixed w-full z-50 py-3 md:py-5 top-0 transition-all duration-300 ${
-          isScrolled
-            ? 'bg-background/80 backdrop-blur-[40px] border-b border-white/6 shadow-[0_4px_40px_rgba(0,0,0,0.4)]'
-            : 'bg-background/50 backdrop-blur-[20px] border-b border-transparent'
+        className={`nav-glass fixed w-full z-50 py-3 md:py-5 top-0 ${
+          isScrolled ? 'nav-scrolled' : ''
         }`}
       >
         <div className="max-w-[1400px] mx-auto px-4 md:px-8 flex justify-between items-center">
