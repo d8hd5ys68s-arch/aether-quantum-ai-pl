@@ -13,7 +13,11 @@
 [![Vercel](https://img.shields.io/badge/Vercel-Postgres-000000?style=for-the-badge&logo=vercel)](https://vercel.com/)
 [![Carbon Negative](https://img.shields.io/badge/Carbon-Negative-00B140?style=for-the-badge&logo=leaf)](https://hedera.com/)
 
-[Overview](#-overview) • [Architecture](#-architecture) • [Quick Start](#-quick-start) • [Hedera Integration](#-hedera-token-service-integration) • [Documentation](#-documentation)
+[![Production Ready](https://img.shields.io/badge/Status-Production_Ready-success?style=for-the-badge)](PRODUCTION.md)
+[![Deploy to Vercel](https://img.shields.io/badge/Deploy-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/new/clone?repository-url=https://github.com/d8hd5ys68s-arch/ItsAetherAI)
+[![Deploy to GitHub Pages](https://img.shields.io/badge/Deploy-GitHub_Pages-181717?style=for-the-badge&logo=github)](DEPLOY.md#-option-1-deploy-to-github-pages-static-showcase)
+
+[Overview](#-overview) • [Quick Deploy](#-quick-deploy) • [Architecture](#-architecture) • [Features](#-features) • [Documentation](#-documentation)
 
 </div>
 
@@ -53,6 +57,65 @@ Traditional AI platforms face critical challenges:
 - **Environmental concerns** from energy-intensive operations
 
 **Aether AI solves these problems** by utilizing Hedera's hashgraph consensus algorithm and Token Service to create a **faster, cheaper, more efficient, and carbon-negative** AI infrastructure with built-in receipts for every API call.
+
+---
+
+## 🚀 Quick Deploy
+
+Deploy Aether AI in minutes:
+
+### Option 1: Vercel (Full-Stack Production)
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/d8hd5ys68s-arch/ItsAetherAI)
+
+**What you get:**
+- Real AI powered by Google Gemini 2.0 Flash
+- PostgreSQL database with full authentication
+- Blockchain tracking via Hedera (optional)
+- File uploads with Vercel Blob
+- Health checks and monitoring endpoints
+
+**Deployment time:** 5 minutes | **Documentation:** [PRODUCTION.md](PRODUCTION.md) | **Checklist:** [CHECKLIST.md](CHECKLIST.md)
+
+### Option 2: GitHub Pages (Static Showcase)
+
+Deploy the marketing site automatically on every push:
+
+1. Enable GitHub Pages: Repo Settings → Pages → Source: GitHub Actions
+2. Push to main branch
+3. Visit: `https://yourusername.github.io/ItsAetherAI`
+
+**What you get:**
+- Beautiful landing page with animations
+- Demo AI chat (simulated responses)
+- Fast CDN delivery via GitHub
+
+**Deployment time:** 3 minutes | **Documentation:** [DEPLOY.md](DEPLOY.md)
+
+### Quick Start (Local Development)
+
+```bash
+# Clone repository
+git clone https://github.com/d8hd5ys68s-arch/ItsAetherAI.git
+cd ItsAetherAI
+
+# Install dependencies
+npm install
+
+# Set up environment variables
+cp .env.example .env.local
+# Edit .env.local with your API keys
+
+# Start development server
+npm run dev
+
+# Visit http://localhost:9002
+```
+
+**Required:**
+- Node.js 18+
+- Google Gemini API key ([Get here](https://aistudio.google.com/app/apikey))
+- PostgreSQL database (or use Vercel Postgres)
 
 ---
 

@@ -1,11 +1,18 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "nextjs",
   "buildCommand": "npm run build",
   "devCommand": "npm run dev",
   "installCommand": "npm install",
   "regions": ["iad1"],
+  "functions": {
+    "app/api/**/*.ts": {
+      "maxDuration": 30
+    }
+  },
   "env": {
-    "NEXT_PUBLIC_APP_URL": "https://its-aether-ai.vercel.app"
+    "NEXT_PUBLIC_APP_URL": "https://its-aether-ai.vercel.app",
+    "BUILD_MODE": "dynamic"
   },
   "headers": [
     {
