@@ -38,4 +38,5 @@ pids
 # Next.js
 .next/
 .vercel
+out/
 

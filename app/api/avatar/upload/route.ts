@@ -55,7 +55,7 @@ export async function POST(request: Request): Promise<NextResponse> {
           console.log('✅ Upload completed:', {
             url: blob.url,
             pathname: blob.pathname,
-            size: blob.size,
+            contentType: blob.contentType,
             uploadedAt: payload.uploadedAt,
           });
 
@@ -64,7 +64,7 @@ export async function POST(request: Request): Promise<NextResponse> {
           //   userId: payload.userId,
           //   blobUrl: blob.url,
           //   pathname: blob.pathname,
-          //   size: blob.size,
+          //   contentType: blob.contentType,
           // });
         } catch (error) {
           console.error('Failed to process upload completion:', error);

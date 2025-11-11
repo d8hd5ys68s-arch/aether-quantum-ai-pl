@@ -32,7 +32,7 @@ jobs:
         run: npm ci
 
       - name: Build static site
-        run: BUILD_MODE=static npm run build
+        run: npm run build:static
         env:
           NEXT_PUBLIC_BUILD_MODE: static
 
