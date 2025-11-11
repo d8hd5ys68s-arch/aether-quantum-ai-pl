@@ -1,0 +1,1499 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aether - The Enterprise AI Network | Powered by Hedera & DocsGPT</title>
+    
+    <!-- Meta Tags -->
+    <meta name="description" content="Meet Aether, the enterprise-grade AI fine-tuned on DocsGPT, running on the Hedera network for unparalleled speed, micro-cost transactions, and a carbon-negative footprint. Built for devs and enterprise leaders.">
+    <meta name="keywords" content="AI, Enterprise AI, Hedera, HTS, DocsGPT, developer AI, business AI, smart contracts, carbon negative, DLT, AI for business, machine learning, Web3">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Embedded CSS -->
+    <style>
+        /* --- Base & Fonts --- */
+        :root {
+            --color-bg-deep: #020010;
+            --color-primary-400: #8b5cf6; /* purple-500 */
+            --color-primary-300: #a78bfa; /* purple-400 */
+            --color-secondary-400: #3b82f6; /* blue-500 */
+            --color-accent-400: #22d3ee; /* cyan-400 */
+            
+            --glass-bg: rgba(15, 13, 35, 0.45);
+            --glass-border: rgba(139, 92, 246, 0.2);
+            --glass-shadow: rgba(0, 0, 0, 0.25);
+            --glass-blur: 16px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-bg-deep);
+            color: #e0e0e0;
+            overflow-x: hidden;
+        }
+
+        /* --- Animated Background --- */
+        #aether-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .aether-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.25;
+            will-change: transform, opacity;
+        }
+
+        .blob-1 {
+            width: 700px;
+            height: 700px;
+            top: -20%;
+            left: -30%;
+            background: #8b5cf6; /* purple-500 */
+            animation: moveBlob1 25s infinite alternate ease-in-out;
+        }
+
+        .blob-2 {
+            width: 600px;
+            height: 600px;
+            top: 10%;
+            right: -30%;
+            background: #3b82f6; /* blue-500 */
+            animation: moveBlob2 30s infinite alternate ease-in-out;
+        }
+
+        .blob-3 {
+            width: 500px;
+            height: 500px;
+            bottom: -20%;
+            left: 20%;
+            background: #10b981; /* emerald-500 */
+            animation: moveBlob3 28s infinite alternate ease-in-out;
+        }
+        
+        .blob-4 {
+            width: 400px;
+            height: 400px;
+            bottom: 10%;
+            right: 10%;
+            background: #ec4899; /* pink-500 */
+            animation: moveBlob4 22s infinite alternate ease-in-out;
+        }
+
+        @keyframes moveBlob1 {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(150px, 100px) scale(1.1); }
+        }
+        @keyframes moveBlob2 {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(-100px, 150px) scale(1.05); }
+        }
+        @keyframes moveBlob3 {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(50px, -100px) scale(0.95); }
+        }
+         @keyframes moveBlob4 {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(-50px, -50px) scale(1.1); }
+        }
+        
+        @media (max-width: 768px) {
+            .aether-blob { filter: blur(60px); opacity: 0.2; }
+            .blob-1 { width: 400px; height: 400px; }
+            .blob-2 { width: 350px; height: 350px; }
+            .blob-3 { width: 300px; height: 300px; }
+            .blob-4 { width: 250px; height: 250px; }
+        }
+
+        /* --- Particle Overlay --- */
+        #particle-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* --- Main Content --- */
+        main {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* --- Container --- */
+        .wp-container {
+            width: 100%;
+            max-width: 1280px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+        @media (max-width: 640px) {
+            .wp-container { padding-left: 1rem; padding-right: 1rem; }
+        }
+        
+        /* --- Glass & Nav --- */
+        .glass-base {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 8px 32px var(--glass-shadow);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+        }
+        .nav-glass {
+            transition: background-color 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease;
+        }
+        .nav-glass.nav-scrolled {
+            background: rgba(10, 8, 28, 0.7);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+        }
+        
+        .nav-link {
+            color: #d1d5db; /* gray-300 */
+            font-size: 1.125rem; /* text-lg */
+            font-weight: 600;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover { color: #fff; }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--color-primary-400);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after { width: 100%; }
+
+        /* --- Mobile Menu --- */
+        .mobile-menu-glass {
+            background: rgba(10, 8, 28, 0.85);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .mobile-menu-glass.is-open {
+            opacity: 1;
+            visibility: visible;
+        }
+        .mobile-nav-link {
+            color: #fff;
+            font-size: 2.25rem; /* text-4xl */
+            font-weight: 700;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .mobile-nav-link:hover {
+            color: var(--color-primary-300);
+            transform: translateX(5px);
+        }
+
+        /* --- Text & Gradients --- */
+        .text-gradient {
+            background: linear-gradient(90deg, var(--color-primary-400), var(--color-accent-400));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+        }
+        .header-logo.text-gradient {
+            background: linear-gradient(90deg, #fff, var(--color-primary-300), var(--color-accent-400));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+        }
+
+        /* --- Hero --- */
+        .hero-section {
+            padding-top: 10rem;
+            padding-bottom: 8rem;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+        .hero-title {
+            color: #fff;
+            line-height: 1.15;
+            text-shadow: 0 0 20px rgba(139, 92, 246, 0.2);
+        }
+        .shadow-glow-vibrant:hover {
+            box-shadow: 0 0 25px 0px rgba(34, 211, 238, 0.5), 0 0 10px 0px rgba(34, 211, 238, 0.3);
+        }
+        .quantum-pulse {
+            animation: quantumPulse 3s infinite ease-in-out;
+        }
+        @keyframes quantumPulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 15px rgba(139, 92, 246, 0.5); }
+            50% { transform: scale(1.05); box-shadow: 0 0 25px rgba(139, 92, 246, 0.8); }
+        }
+        .stat-box {
+            color: #fff;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 3rem; /* text-5xl */
+            font-weight: 800;
+            color: var(--color-accent-400);
+            font-family: 'Space Mono', monospace;
+            margin-bottom: 0.5rem;
+        }
+        .stat-label {
+            font-size: 1.125rem; /* text-lg */
+            color: #d1d5db; /* gray-300 */
+            font-weight: 500;
+        }
+        
+        /* --- Buttons --- */
+        .btn-base {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 9999px;
+            font-weight: 700;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn-primary-gradient {
+            @apply btn-base;
+            background: linear-gradient(90deg, var(--color-primary-400) 0%, var(--color-secondary-400) 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+        }
+        .btn-primary-gradient:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--color-secondary-400) 0%, var(--color-primary-400) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+        .btn-primary-gradient:hover:before { opacity: 1; }
+        .btn-primary-gradient:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
+        }
+
+        .btn-secondary-outline {
+            @apply btn-base;
+            border: 2px solid var(--color-primary-300);
+            color: var(--color-primary-300);
+            background: transparent;
+        }
+        .btn-secondary-outline:hover {
+            background: var(--color-primary-400);
+            color: white;
+            border-color: var(--color-primary-400);
+            transform: translateY(-2px);
+        }
+        
+        /* --- Glass Card --- */
+        .glass-card {
+            @apply glass-base;
+            border-radius: 1.5rem; /* rounded-3xl */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .glass-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 40px var(--glass-shadow);
+            border-color: rgba(139, 92, 246, 0.4);
+        }
+
+        .feature-icon-wrapper {
+            width: 4.5rem; /* w-18 */
+            height: 4.5rem; /* h-18 */
+            border-radius: 1.25rem; /* rounded-2xl */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--color-primary-400), var(--color-secondary-400));
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+            font-size: 2rem; /* text-4xl */
+            color: white;
+        }
+
+        /* --- Chat Interface --- */
+        .chat-container {
+            background: rgba(2, 0, 16, 0.6);
+            position: relative;
+        }
+        #chat-reset-btn {
+            position: absolute;
+            top: 1.25rem;
+            right: 1.25rem;
+            color: #9ca3af; /* gray-400 */
+            transition: color 0.3s ease, transform 0.3s ease;
+            z-index: 10;
+        }
+        #chat-reset-btn:hover {
+            color: #fff;
+            transform: rotate(180deg);
+        }
+        .chat-messages {
+            scrollbar-width: thin;
+            scrollbar-color: var(--color-primary-400) transparent;
+        }
+        .chat-messages::-webkit-scrollbar {
+            width: 6px;
+        }
+        .chat-messages::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .chat-messages::-webkit-scrollbar-thumb {
+            background-color: var(--color-primary-400);
+            border-radius: 3px;
+        }
+
+        .chat-message.ai .chat-bubble {
+            background: var(--color-primary-400);
+            border-top-left-radius: 0.25rem;
+        }
+        .chat-message.user .chat-bubble {
+            background: #374151; /* gray-700 */
+            border-top-right-radius: 0.25rem;
+        }
+        
+        .chat-bubble {
+            max-width: 85%;
+            word-wrap: break-word;
+        }
+
+        .chat-text {
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+        
+        /* Typing indicator */
+        .chat-message.ai .chat-bubble.typing-indicator {
+            padding: 0.75rem 1.25rem;
+        }
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #fff;
+            border-radius: 50%;
+            display: inline-block;
+            margin: 0 2px;
+            animation: typing-bounce 1.4s infinite both;
+        }
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typing-bounce {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1.0); }
+        }
+
+        .chat-input-field {
+            background-color: #1f2937; /* gray-800 */
+            color: #fff;
+            border: 1px solid #4b5563; /* gray-600 */
+        }
+        .chat-input-field:focus {
+            border-color: var(--color-primary-400);
+            box-shadow: 0 0 0 2px var(--color-primary-400);
+        }
+        .chat-send-btn {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .suggestion-chip {
+            background-color: rgba(139, 92, 246, 0.1);
+            color: var(--color-primary-300);
+            border: 1px solid var(--color-primary-400);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .suggestion-chip:hover {
+            background-color: var(--color-primary-400);
+            color: #fff;
+        }
+
+        /* --- Forms --- */
+        .beta-form-input {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: #fff;
+            border: 1px solid var(--glass-border);
+        }
+        .beta-form-input:focus {
+            border-color: var(--color-primary-400);
+            box-shadow: 0 0 0 2px var(--color-primary-400);
+        }
+
+        /* --- Modals --- */
+        .modal-backdrop {
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            transition: opacity 0.3s ease;
+        }
+        .modal {
+            @apply glass-base;
+            border-radius: 1.5rem; /* rounded-3xl */
+            transform: translate(-50%, -50%) scale(0.95);
+            opacity: 0;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease;
+            box-shadow: 0 16px 50px rgba(0,0,0,0.5);
+        }
+        
+        .modal-backdrop.is-open { opacity: 1; }
+        .modal.is-open {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+        }
+        
+        .modal-input {
+            background-color: #1f2937; /* gray-800 */
+            color: #fff;
+            border: 1px solid #4b5563; /* gray-600 */
+        }
+        .modal-input:focus {
+            border-color: var(--color-primary-400);
+            box-shadow: 0 0 0 2px var(--color-primary-400);
+        }
+        .password-toggle {
+            position: absolute;
+            top: 50%;
+            right: 1.5rem;
+            transform: translateY(-50%);
+            color: #9ca3af; /* gray-400 */
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        .password-toggle:hover { color: #fff; }
+        
+        .modal-switch-btn {
+            color: var(--color-primary-300);
+            transition: color 0.3s ease;
+        }
+        .modal-switch-btn:hover { color: #fff; }
+
+        /* --- Scroll to Top --- */
+        #scroll-to-top-btn {
+            @apply btn-primary-gradient;
+            transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+        }
+        #scroll-to-top-btn.is-visible {
+            opacity: 1;
+            visibility: visible;
+            transform: scale(1);
+        }
+         #scroll-to-top-btn {
+            transform: scale(0.8);
+        }
+
+        /* --- Scroll Animations --- */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            transition-delay: var(--delay, 0s);
+            will-change: opacity, transform;
+        }
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Utility --- */
+        .btn-spinner {
+            display: none;
+            animation: spin 1s linear infinite;
+        }
+        .btn-text {
+            display: inline-block;
+        }
+        .is-loading .btn-spinner {
+            display: inline-block;
+        }
+        .is-loading .btn-text {
+            display: none;
+        }
+        .is-loading {
+            cursor: wait;
+            opacity: 0.8;
+        }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        /* --- Toasts --- */
+        #toast-container {
+            pointer-events: none;
+        }
+        .toast {
+            @apply glass-base;
+            pointer-events: all;
+            padding: 1.25rem;
+            border-radius: 1rem;
+            max-width: 100%;
+            opacity: 0;
+            transform: translateX(100%);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border-left: 5px solid;
+        }
+        .toast.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .toast.hide {
+            opacity: 0;
+            transform: translateX(100%);
+        }
+        .toast.success {
+            border-left-color: #22c55e; /* green-500 */
+        }
+        .toast.error {
+            border-left-color: #ef4444; /* red-500 */
+        }
+        .toast.info {
+            border-left-color: #3b82f6; /* blue-500 */
+        }
+        .toast-icon {
+            width: 1.75rem;
+            height: 1.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 9999px;
+            flex-shrink: 0;
+        }
+        .toast.success .toast-icon { background-color: #22c55e; color: white; }
+        .toast.error .toast-icon { background-color: #ef4444; color: white; }
+        .toast.info .toast-icon { background-color: #3b82f6; color: white; }
+        
+        .toast-content h4 {
+            color: #fff;
+            font-weight: 700;
+            font-size: 1.125rem;
+        }
+        .toast-content p {
+            color: #d1d5db; /* gray-300 */
+        }
+
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Background Elements -->
+    <div id="aether-bg">
+        <div class="aether-blob blob-1"></div>
+        <div class="aether-blob blob-2"></div>
+        <div class="aether-blob blob-3"></div>
+        <div class="aether-blob blob-4"></div>
+    </div>
+    <canvas id="particle-overlay"></canvas>
+
+    <!-- Toast Notifications Container -->
+    <div id="toast-container" class="fixed top-8 right-8 z-[200] space-y-3 w-full max-w-sm"></div>
+
+    <!-- Main Content -->
+    <main style="position: relative; z-index: 10;"> <!-- Increased z-index for main -->
+
+        <!-- Navigation -->
+        <nav class="nav-glass fixed w-full z-50 py-5 top-0" data-delay="0">
+            <div class="wp-container flex justify-between items-center">
+                <div class="flex items-center space-x-4">
+                    <a href="#hero" class="flex items-center space-x-4">
+                        <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-blue-500 rounded-xl flex items-center justify-center shadow-lg quantum-pulse">
+                            <i class="fas fa-atom text-white text-xl"></i>
+                        </div>
+                        <span id="hero-logo-text" class="text-3xl font-extrabold header-logo text-gradient tracking-tight font-['Space_Mono']">AETHER</span>
+                    </a>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-10">
+                    <a href="#solution" class="nav-link">Solution</a>
+                    <a href="#network" class="nav-link">The Network</a>
+                    <a href="#ai-demo" class="nav-link">AI Demo</a>
+                    <a href="#developers" class="nav-link">Developers</a>
+                </div>
+
+                <div class="flex items-center space-x-4">
+                    <button id="login-btn" type="button" class="btn-primary-gradient text-base px-8 py-3 hidden sm:flex">
+                        <i class="fas fa-user-astronaut mr-2"></i>Developer Access
+                    </button>
+                    <button id="mobile-menu-open-btn" type="button" class="md:hidden text-white text-2xl">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu-glass fixed inset-0 z-[60] flex items-center justify-center opacity-0 invisible" aria-hidden="true">
+            <button id="mobile-menu-close-btn" type="button" class="absolute top-8 right-8 text-white text-4xl">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="flex flex-col space-y-8 text-center">
+                <a href="#solution" class="mobile-nav-link">Solution</a>
+                <a href="#network" class="mobile-nav-link">The Network</a>
+                <a href="#ai-demo" class="mobile-nav-link">AI Demo</a>
+                <a href="#developers" class="mobile-nav-link">Developers</a>
+                <button id="mobile-login-btn" type="button" class="mobile-nav-link text-primary-300 hover:text-primary-400">
+                    Login
+                </button>
+            </div>
+        </div>
+
+        <!-- Hero Section -->
+        <section class="hero-section text-center relative z-10" id="hero">
+            <div class="wp-container">
+                <div class="max-w-5xl mx-auto animate-on-scroll" data-delay="100ms">
+                    <div class="inline-flex items-center space-x-3 bg-gradient-to-r from-purple-900/40 to-blue-900/40 border border-purple-500/30 rounded-full pl-6 pr-8 py-3 mb-10 shadow-inner group cursor-pointer hover:shadow-glow-vibrant transition-all duration-300">
+                        <span class="w-3 h-3 bg-cyan-400 rounded-full animate-ping absolute left-4"></span>
+                        <span class="w-3 h-3 bg-cyan-400 rounded-full relative left-4"></span>
+                        <span class="text-sm text-cyan-200 font-semibold tracking-wide ml-6 group-hover:text-white transition-colors">Fine-tuned on DocsGPT. Powered by Hedera.</span>
+                        <i class="fas fa-bolt text-cyan-300 ml-2 group-hover:text-white transition-colors"></i>
+                    </div>
+                    
+                    <h1 class="text-6xl md:text-8xl font-extrabold mb-8 hero-title">
+                        The Enterprise AI,
+                        <br>
+                        <span class="text-gradient">Re-Engineered on Hedera.</span>
+                    </h1>
+                    
+                    <p class="text-xl md:text-2xl text-gray-300 mb-14 max-w-3xl mx-auto leading-relaxed">
+                        Aether is an expert AI, fine-tuned for business & development, that runs on the Hedera network. Get enterprise-grade intelligence with unparalleled speed, micro-costs, and a carbon-negative footprint.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row gap-5 justify-center items-center">
+                        <a href="#ai-demo" class="btn-primary-gradient text-xl px-10 py-5 flex items-center group">
+                            <i class="fas fa-play-circle mr-3 group-hover:scale-110 transition-transform duration-300"></i>
+                            Try the AI Demo
+                        </a>
+                        <a href="#developers" class="btn-secondary-outline text-xl px-10 py-5 flex items-center group">
+                            <i class="fas fa-book-open mr-3 group-hover:text-accent transition-colors"></i>
+                            View Developer Docs
+                        </a>
+                    </div>
+
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mt-24 pt-12 border-t border-gray-800/50">
+                        <div class="stat-box animate-on-scroll" data-delay="200ms">
+                            <div class="stat-value" data-animate="count-up" data-value="0.0001" data-prefix="$" data-decimals="4">0</div>
+                            <div class="stat-label">Avg. API Call Cost</div>
+                        </div>
+                        <div class="stat-box animate-on-scroll" data-delay="300ms">
+                            <div class="stat-value" data-animate="count-up" data-value="10000" data-suffix="+">0</div>
+                            <div class="stat-label">Transactions per Sec</div>
+                        </div>
+                        <div class="stat-box animate-on-scroll" data-delay="400ms">
+                            <div class="stat-value" data-animate="count-up" data-value="3.5" data-suffix="s" data-decimals="1">0</div>
+                            <div class="stat-label">Transaction Finality</div>
+                        </div>
+                        <div class="stat-box animate-on-scroll" data-delay="500ms">
+                            <div class="stat-value" data-animate="fade-in">Carbon-</div>
+                            <div class="stat-label">Negative Footprint</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Solution Section -->
+        <section id="solution" class="py-28 relative z-10">
+            <div class="wp-container">
+                <div class="text-center mb-20 animate-on-scroll" data-delay="100ms">
+                    <h2 class="text-5xl md:text-6xl font-extrabold mb-5 text-gradient font-['Space_Mono']">The Aether Solution: Intelligence, Verified.</h2>
+                    <p class="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
+                        We didn't just build a better AI. We built it on a better network. Aether is an expert AI that runs its operations as verifiable, low-cost transactions on Hedera.
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="glass-card p-10 group animate-on-scroll" data-delay="200ms">
+                        <div class="feature-icon-wrapper mb-8">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold mb-5 text-white">Expert AI Model (DocsGPT+)</h3>
+                        <p class="text-gray-400 mb-8 leading-relaxed">
+                            Fine-tuned on DocsGPT with expert datasets in business, management, code optimization, and production workflows. Get answers, not just text.
+                        </p>
+                        <a href="#ai-demo" class="inline-flex items-center text-primary-400 text-lg font-medium group-hover:text-primary-300 transition-colors">
+                            Test the Model <i class="fas fa-arrow-right ml-3 group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
+                    <div class="glass-card p-10 group animate-on-scroll" data-delay="300ms">
+                        <div class="feature-icon-wrapper mb-8 bg-gradient-to-r from-blue-500 to-cyan-500">
+                            <i class="fas fa-bezier-curve"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold mb-5 text-white">The Hedera Network Engine</h3>
+                        <p class="text-gray-400 mb-8 leading-relaxed">
+                            Every AI query and response is processed via the Hedera network. This means unmatched speed, security, and scalability for every API call.
+                        </p>
+                        <a href="#network" class="inline-flex items-center text-blue-400 text-lg font-medium group-hover:text-blue-300 transition-colors">
+                            See the Network <i class="fas fa-arrow-right ml-3 group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
+                    <div class="glass-card p-10 group animate-on-scroll" data-delay="400ms">
+                        <div class="feature-icon-wrapper mb-8 bg-gradient-to-r from-green-500 to-emerald-500">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold mb-5 text-white">Verifiable & Micro-Cost Ops</h3>
+                        <p class="text-gray-400 mb-8 leading-relaxed">
+                            Using HTS and smart contracts, every API call is a verifiable, ultra-low-cost transaction. No-nonsense, auditable AI usage for your enterprise.
+                        </p>
+                        <a href="#" class="inline-flex items-center text-green-400 text-lg font-medium group-hover:text-green-300 transition-colors">
+                            Explore HTS <i class="fas fa-arrow-right ml-3 group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
+                    <div class="glass-card p-10 group animate-on-scroll" data-delay="500ms">
+                        <div class="feature-icon-wrapper mb-8 bg-gradient-to-r from-orange-500 to-red-500">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold mb-5 text-white">Carbon-Negative AI</h3>
+                        <p class="text-gray-400 mb-8 leading-relaxed">
+                            We inherited Hedera's carbon-negative footprint. Your AI operations don't just cost less; they're actively better for the planet.
+                        </p>
+                        <a href="#" class="inline-flex items-center text-orange-400 text-lg font-medium group-hover:text-orange-300 transition-colors">
+                            Our Green Ledger <i class="fas fa-arrow-right ml-3 group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Demo Section -->
+        <section id="ai-demo" class="py-28 relative z-10">
+            <div class="wp-container">
+                <div class="grid lg:grid-cols-2 gap-16 items-center">
+                    <div class="animate-on-scroll" data-delay="100ms">
+                        <h2 class="text-5xl md:text-6xl font-extrabold mb-6 text-gradient font-['Space_Mono']">Engage Aether AI (Dev Preview)</h2>
+                        <p class="text-gray-300 mb-8 text-xl leading-relaxed max-w-lg">
+                            Interact with our fine-tuned DocsGPT model. Ask it about business strategy, coding best practices, or how it leverages the Hedera network.
+                        </p>
+                        
+                        <div class="space-y-6 mt-10 text-lg">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-11 h-11 bg-green-500/20 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                    <i class="fas fa-check text-green-400 text-sm"></i>
+                                </div>
+                                <p class="text-gray-300">Expert knowledge in business, management, and code.</p>
+                            </div>
+                            <div class="flex items-start space-x-4">
+                                <div class="w-11 h-11 bg-green-500/20 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                    <i class="fas fa-check text-green-400 text-sm"></i>
+                                </div>
+                                <p class="text-gray-300">Contextual understanding of the Hedera ecosystem.</p>
+                            </div>
+                            <div class="flex items-start space-x-4">
+                                <div class="w-11 h-11 bg-green-500/20 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                    <i class="fas fa-check text-green-400 text-sm"></i>
+                                </div>
+                                <p class="text-gray-300">Fast, verifiable, and carbon-negative responses.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-8 animate-on-scroll" data-delay="200ms">
+                        <div class="chat-container h-[550px] flex flex-col rounded-xl overflow-hidden">
+                            <button id="chat-reset-btn" type="button" title="Reset Conversation">
+                                <i class="fas fa-sync-alt text-lg"></i>
+                            </button>
+                            
+                            <div class="chat-messages flex-1 overflow-y-auto space-y-5 p-5" id="chat-messages"
+                                 aria-live="polite" aria-atomic="false">
+                                <!-- Initial AI Message -->
+                                <div class="chat-message ai flex justify-start">
+                                    <div class="chat-bubble px-5 py-3 rounded-2xl text-white shadow-md">
+                                        <div class="chat-text">Greetings. I am Aether, an enterprise AI running on the Hedera network. How can I assist your operations?</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <form id="chat-form" class="chat-input flex space-x-4 p-5 border-t border-gray-700/50">
+                                <label for="chat-input" class="sr-only">Ask Aether a question</label>
+                                <input type="text" 
+                                       id="chat-input" 
+                                       placeholder="Ask about business, code, or Hedera..." 
+                                       class="chat-input-field flex-1 rounded-full px-6 py-3 text-base focus:outline-none transition-colors"
+                                       autocomplete="off">
+                                <button id="send-btn" type="submit" class="btn-primary-gradient chat-send-btn w-14 h-14 rounded-full flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-paper-plane text-xl btn-text"></i>
+                                    <i class="fas fa-spinner text-xl btn-spinner"></i>
+                                </button>
+                            </form>
+
+                            <div class="flex flex-wrap gap-3 p-5 pt-0">
+                                <button type="button" class="suggestion-chip text-sm px-5 py-2 rounded-full">
+                                    What is Hedera?
+                                </button>
+                                <button type="button" class="suggestion-chip text-sm px-5 py-2 rounded-full">
+                                    Explain HTS
+                                </button>
+                                <button type="button" class="suggestion-chip text-sm px-5 py-2 rounded-full">
+                                    Best coding practice for...
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Network Section -->
+        <section id="network" class="py-28 relative z-10">
+            <div class="wp-container">
+                <div class="text-center mb-20 animate-on-scroll" data-delay="100ms">
+                    <h2 class="text-5xl md:text-6xl font-extrabold mb-5 text-gradient font-['Space_Mono']">A Network You Can See</h2>
+                    <p class="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
+                        The animated background simulates the Aether network—a decentralized mesh of AI agents and Hedera nodes, constantly communicating. Our stack is built for this new, distributed world.
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="glass-card p-10 text-center animate-on-scroll" data-delay="200ms">
+                        <div class="w-24 h-24 bg-gradient-to-r from-purple-400 to-fuchsia-600 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-xl">
+                            <i class="fas fa-book-open text-white text-4xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold mb-4 text-white">Foundation Model (DocsGPT)</h3>
+                        <p class="text-gray-400 leading-relaxed">
+                            An adaptive knowledge system, fine-tuned on DocsGPT, for Aether to continually learn, evolve, and reason across diverse business & code datasets.
+                        </p>
+                    </div>
+                    <div class="glass-card p-10 text-center animate-on-scroll" data-delay="300ms">
+                        <div class="w-24 h-24 bg-gradient-to-r from-green-400 to-teal-600 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-xl">
+                            <i class="fas fa-bezier-curve text-white text-4xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold mb-4 text-white">Network Layer (Hedera)</h3>
+                        <p class="text-gray-400 leading-relaxed">
+                            The underlying DLT providing blazing-fast, verifiable, and eco-friendly transactions and data logging for the entire Aether network.
+                        </p>
+                    </div>
+                    <div class="glass-card p-10 text-center animate-on-scroll" data-delay="400ms">
+                        <div class="w-24 h-24 bg-gradient-to-r from-blue-400 to-indigo-600 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-xl">
+                            <i class="fas fa-file-signature text-white text-4xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold mb-4 text-white">Smart Contract Logic (HTS)</h3>
+                        <p class="text-gray-400 leading-relaxed">
+                            Using Hedera Token Service & Smart Contracts to manage API calls as micro-transactions, ensuring verifiable, auditable, and low-cost AI ops.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Developers/CTA Section -->
+        <section id="developers" class="py-28 relative z-10">
+            <div class="wp-container">
+                <div class="max-w-5xl mx-auto text-center animate-on-scroll" data-delay="100ms">
+                    <div class="glass-card py-20 px-6 sm:px-10 relative">
+                        <h2 class="text-5xl md:text-6xl font-extrabold mb-6 text-gradient font-['Space_Mono']">Get Access. Start Building.</h2>
+                        <p class="text-xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed">
+                            Our API is built for enterprise use. Join the beta or read the documentation to see how Aether integrates with your workflow and leverages HTS.
+                        </p>
+
+                        <form id="beta-form" class="max-w-xl mx-auto">
+                            <div class="flex flex-col sm:flex-row gap-5 mb-5">
+                                <label for="beta-email" class="sr-only">Enter your business email address</label>
+                                <input type="email" 
+                                       id="beta-email" 
+                                       placeholder="Enter your business email" 
+                                       class="beta-form-input flex-1 rounded-full px-6 py-4 text-lg focus:outline-none transition-colors"
+                                       required>
+                                <button type="submit" class="btn-primary-gradient px-8 sm:px-10 py-4 whitespace-nowrap text-xl">
+                                    <span class="btn-text">Request Beta Access</span>
+                                    <i class="fas fa-spinner btn-spinner"></i>
+                                </button>
+                            </div>
+                        </form>
+
+                        <div class="mt-16 text-base text-gray-500 tracking-wide font-['Space_Mono']">
+                            <p>Beta access is limited. Developer documentation is open to all.</p>
+                            <a href="#" class="btn-secondary-outline text-lg px-8 py-3 inline-block mt-6">
+                                Read the Docs
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="py-16 border-t border-gray-800/50 relative z-10">
+            <div class="wp-container">
+                <div class="grid md:grid-cols-4 gap-12">
+                    <div>
+                        <div class="flex items-center space-x-4 mb-6">
+                            <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-blue-500 rounded-xl flex items-center justify-center shadow-lg">
+                                <i class="fas fa-atom text-white text-xl"></i>
+                            </div>
+                            <span class="text-2xl font-extrabold text-gradient tracking-tight font-['Space_Mono']">AETHER</span>
+                        </div>
+                        <p class="text-gray-400 mb-6 text-sm leading-relaxed">
+                            The definitive nexus for decentralized enterprise AI, built on DocsGPT and the Hedera network.
+                        </p>
+                        <div class="flex space-x-6">
+                            <a href="#" class="text-gray-500 hover:text-white transition-colors text-xl"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="text-gray-500 hover:text-white transition-colors text-xl"><i class="fab fa-github"></i></a>
+                            <a href="#" class="text-gray-500 hover:text-white transition-colors text-xl"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" class="text-gray-500 hover:text-white transition-colors text-xl"><i class="fab fa-discord"></i></a>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-semibold mb-6 text-white tracking-wide">Solution</h4>
+                        <ul class="space-y-4">
+                            <li><a href="#solution" class="text-gray-400 hover:text-primary-300 transition-colors">Expert AI Model</a></li>
+                            <li><a href="#network" class="text-gray-400 hover:text-primary-300 transition-colors">Hedera Network</a></li>
+                            <li><a href="#solution" class="text-gray-400 hover:text-primary-300 transition-colors">Verifiable Ops (HTS)</a></li>
+                            <li><a href="#solution" class="text-gray-400 hover:text-primary-300 transition-colors">Carbon-Negative</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-semibold mb-6 text-white tracking-wide">Developers</h4>
+                        <ul class="space-y-4">
+                            <li><a href="#developers" class="text-gray-400 hover:text-primary-300 transition-colors">Join Beta</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-primary-300 transition-colors">Documentation</a></li>
+                            <li><a href="#ai-demo" class="text-gray-400 hover:text-primary-300 transition-colors">AI Demo</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-primary-300 transition-colors">API Status</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-semibold mb-6 text-white tracking-wide">Company</h4>
+                        <ul class="space-y-4">
+                            <li><a href="#" class="text-gray-400 hover:text-primary-300 transition-colors">About Us</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-primary-300 transition-colors">Careers</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-primary-300 transition-colors">Blog</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-primary-300 transition-colors">Contact Us</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="border-t border-gray-800/50 mt-16 pt-10 text-center text-gray-600 text-sm font-['Space_Mono']">
+                    <p>&copy; 2024 Aether Labs Inc. All rights reserved. Built for the Hedera ecosystem.</p>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Scroll to Top Button -->
+        <button id="scroll-to-top-btn" type="button" class="fixed bottom-8 right-8 z-50 w-14 h-14 rounded-full flex items-center justify-center text-white text-xl opacity-0 invisible">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+    
+    </main>
+    
+    <!-- Modals -->
+    <div id="modal-backdrop" class="modal-backdrop fixed inset-0 z-[100] hidden opacity-0 flex items-center justify-center transition-opacity duration-300"></div>
+
+    <div id="login-modal" class="modal fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[101] hidden w-full max-w-lg p-6">
+        <div class="modal-content p-10">
+            <h2 class="text-3xl font-bold text-white mb-8 text-center font-['Space_Mono']">Aether Developer Access</h2>
+            <form id="login-form" class="flex flex-col gap-6">
+                <label for="login-email" class="sr-only">Secure Email Address</label>
+                <input type="email" id="login-email" class="modal-input px-6 py-4 rounded-full text-lg" placeholder="Secure Email Address" required>
+                
+                <div class="relative">
+                    <label for="login-password" class="sr-only">Password</label>
+                    <input type="password" id="login-password" class="modal-input px-6 py-4 rounded-full text-lg w-full" placeholder="Password" required>
+                    <span class="password-toggle" data-target="login-password">
+                        <i class="fas fa-eye"></i>
+                    </span>
+                </div>
+                <button type="submit" class="btn-primary-gradient w-full text-xl px-6 py-4">
+                    <span class="btn-text">Authenticate</span>
+                    <i class="fas fa-spinner btn-spinner"></i>
+                </button>
+            </form>
+            
+            <div class="relative my-8">
+                <div class="absolute inset-0 flex items-center" aria-hidden="true">
+                    <div class="w-full border-t border-gray-700/50"></div>
+                </div>
+                <div class="relative flex justify-center">
+                    <span class="bg-bg-deep px-3 text-sm text-gray-500 font-['Space_Mono']" style="background-color: var(--glass-bg); position: relative; z-index: 1;">or connect with</span>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-5">
+                <button id="google-login-btn" type="button" class="btn-secondary-outline w-full px-6 py-4 flex items-center justify-center">
+                    <i class="fab fa-google mr-3 text-lg"></i> Google
+                </button>
+                <button type="button" class="btn-secondary-outline w-full px-6 py-4 flex items-center justify-center">
+                    <i class="fab fa-github mr-3 text-lg"></i> GitHub
+                </button>
+            </div>
+            
+            <p class="text-base text-gray-400 text-center mt-10">
+                No account? 
+                <button id="show-register-btn" type="button" class="modal-switch-btn font-medium">Register for Beta</button>
+            </p>
+        </div>
+    </div>
+
+    <div id="register-modal" class="modal fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[101] hidden w-full max-w-lg p-6">
+        <div class="modal-content p-10">
+            <h2 class="text-3xl font-bold text-white mb-8 text-center font-['Space_Mono']">Join the Aether Beta</h2>
+            <form id="register-form" class="flex flex-col gap-6">
+                <label for="register-email" class="sr-only">Secure Email Address</label>
+                <input type="email" id="register-email" class="modal-input px-6 py-4 rounded-full text-lg" placeholder="Secure Email Address" required>
+                
+                <div class="relative">
+                    <label for="register-password" class="sr-only">Password (min. 8 characters)</label>
+                    <input type="password" id="register-password" class="modal-input px-6 py-4 rounded-full text-lg w-full" placeholder="Password (min. 8 characters)" required>
+                    <span class="password-toggle" data-target="register-password">
+                        <i class="fas fa-eye"></i>
+                    </span>
+                </div>
+                
+                <label for="register-access-code" class="sr-only">Beta Access Key (Optional)</label>
+                <input type="text" id="register-access-code" class="modal-input px-6 py-4 rounded-full text-lg" placeholder="Beta Access Key (Optional)" >
+                
+                <button type="submit" class="btn-primary-gradient w-full text-xl px-6 py-4">
+                    <span class="btn-text">Register Account</span>
+                    <i class="fas fa-spinner btn-spinner"></i>
+                </button>
+            </form>
+            
+            <p class="text-base text-gray-400 text-center mt-10">
+                Already have an account? 
+                <button id="show-login-btn" type="button" class="modal-switch-btn font-medium">Log In Instead</button>
+            </p>
+        </div>
+    </div>
+
+
+    <!-- Embedded JavaScript -->
+    <script type="module">
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // --- Constants & State ---
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileOpenBtn = document.getElementById('mobile-menu-open-btn');
+            const mobileCloseBtn = document.getElementById('mobile-menu-close-btn');
+            const mobileLoginBtn = document.getElementById('mobile-login-btn');
+            const nav = document.querySelector('nav');
+            const scrollToTopBtn = document.getElementById('scroll-to-top-btn');
+            
+            const modalBackdrop = document.getElementById('modal-backdrop');
+            const loginModal = document.getElementById('login-modal');
+            const registerModal = document.getElementById('register-modal');
+            const openLoginBtns = [document.getElementById('login-btn'), mobileLoginBtn];
+            const showRegisterBtn = document.getElementById('show-register-btn');
+            const showLoginBtn = document.getElementById('show-login-btn');
+            
+            const chatForm = document.getElementById('chat-form');
+            const chatInput = document.getElementById('chat-input');
+            const sendBtn = document.getElementById('send-btn');
+            const chatMessages = document.getElementById('chat-messages');
+            const chatResetBtn = document.getElementById('chat-reset-btn');
+            const suggestionChips = document.querySelectorAll('.suggestion-chip');
+
+            const initialBotMessage = `Greetings. I am Aether, an enterprise AI running on the Hedera network. How can I assist your operations?`;
+            
+            // --- Toast Notifications ---
+            const toastContainer = document.getElementById('toast-container');
+            
+            function showToast(type, title, message) {
+                const icons = {
+                    success: 'fa-check',
+                    error: 'fa-times',
+                    info: 'fa-info'
+                };
+                const toast = document.createElement('div');
+                toast.className = `toast ${type} flex items-start space-x-4`;
+                
+                toast.innerHTML = `
+                    <div class="toast-icon">
+                        <i class="fas ${icons[type]}"></i>
+                    </div>
+                    <div class="toast-content flex-1">
+                        <h4>${title}</h4>
+                        <p>${message}</p>
+                    </div>
+                `;
+                
+                toastContainer.appendChild(toast);
+                
+                // Show toast
+                setTimeout(() => toast.classList.add('show'), 100);
+                
+                // Hide toast
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                    toast.classList.add('hide');
+                    setTimeout(() => toast.remove(), 500);
+                }, 4000);
+            }
+
+            // --- Particle Canvas ---
+            const canvas = document.getElementById('particle-overlay');
+            const ctx = canvas.getContext('2d');
+            let particles = [];
+            
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            resizeCanvas();
+            
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.size = Math.random() * 1.5 + 0.5;
+                    this.speedX = (Math.random() * 0.4 - 0.2);
+                    this.speedY = (Math.random() * 0.4 - 0.2);
+                    this.opacity = Math.random() * 0.5 + 0.2;
+                }
+                update() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+                    
+                    if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                    if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+                }
+                draw() {
+                    ctx.fillStyle = `rgba(139, 92, 246, ${this.opacity})`;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+            
+            function initParticles() {
+                const particleCount = window.innerWidth < 768 ? 50 : 100;
+                particles = [];
+                for (let i = 0; i < particleCount; i++) {
+                    particles.push(new Particle());
+                }
+            }
+            
+            function animateParticles() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                for (let i = 0; i < particles.length; i++) {
+                    particles[i].update();
+                    particles[i].draw();
+                }
+                // Connect particles
+                for (let i = 0; i < particles.length; i++) {
+                    for (let j = i + 1; j < particles.length; j++) {
+                        const dx = particles[i].x - particles[j].x;
+                        const dy = particles[i].y - particles[j].y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+                        if (distance < 120) {
+                            ctx.strokeStyle = `rgba(139, 92, 246, ${Math.min(0.3, 1 - distance / 120)})`;
+                            ctx.lineWidth = 0.5;
+                            ctx.beginPath();
+                            ctx.moveTo(particles[i].x, particles[i].y);
+                            ctx.lineTo(particles[j].x, particles[j].y);
+                            ctx.stroke();
+                        }
+                    }
+                }
+                requestAnimationFrame(animateParticles);
+            }
+            
+            initParticles();
+            animateParticles();
+            window.addEventListener('resize', () => {
+                resizeCanvas();
+                initParticles();
+            });
+
+            // --- Navbar Scroll ---
+            function handleScroll() {
+                if (window.scrollY > 50) {
+                    nav.classList.add('nav-scrolled');
+                    scrollToTopBtn.classList.add('is-visible');
+                } else {
+                    nav.classList.remove('nav-scrolled');
+                    scrollToTopBtn.classList.remove('is-visible');
+                }
+            }
+            window.addEventListener('scroll', handleScroll);
+
+            // --- Scroll-to-Top Button ---
+            scrollToTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // --- Smooth Scrolling for Anchor Links ---
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if(targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                        // Close mobile menu if open
+                        if (mobileMenu.classList.contains('is-open')) {
+                            mobileMenu.classList.remove('is-open');
+                        }
+                    }
+                });
+            });
+
+            // --- Mobile Menu ---
+            function toggleMobileMenu() {
+                mobileMenu.classList.toggle('is-open');
+            }
+            mobileOpenBtn.addEventListener('click', toggleMobileMenu);
+            mobileCloseBtn.addEventListener('click', toggleMobileMenu);
+
+            // --- Modal Logic ---
+            function openModal(modal) {
+                modalBackdrop.classList.remove('hidden');
+                modal.classList.remove('hidden');
+                setTimeout(() => {
+                    modalBackdrop.classList.add('is-open');
+                    modal.classList.add('is-open');
+                }, 10);
+            }
+
+            function closeModal() {
+                [loginModal, registerModal].forEach(modal => modal.classList.remove('is-open'));
+                modalBackdrop.classList.remove('is-open');
+                setTimeout(() => {
+                    modalBackdrop.classList.add('hidden');
+                    loginModal.classList.add('hidden');
+                    registerModal.classList.add('hidden');
+                }, 300);
+            }
+
+            openLoginBtns.forEach(btn => btn.addEventListener('click', () => openModal(loginModal)));
+            modalBackdrop.addEventListener('click', closeModal);
+            showRegisterBtn.addEventListener('click', () => {
+                closeModal();
+                setTimeout(() => openModal(registerModal), 350);
+            });
+            showLoginBtn.addEventListener('click', () => {
+                closeModal();
+                setTimeout(() => openModal(loginModal), 350);
+            });
+
+            // Password Toggle
+            document.querySelectorAll('.password-toggle').forEach(toggle => {
+                toggle.addEventListener('click', () => {
+                    const targetId = toggle.dataset.target;
+                    const input = document.getElementById(targetId);
+                    const icon = toggle.querySelector('i');
+                    if (input.type === 'password') {
+                        input.type = 'text';
+                        icon.classList.remove('fa-eye');
+                        icon.classList.add('fa-eye-slash');
+                    } else {
+                        input.type = 'password';
+                        icon.classList.remove('fa-eye-slash');
+                        icon.classList.add('fa-eye');
+                    }
+                });
+            });
+
+            // --- Form Handling ---
+            function handleFormSubmit(form, successTitle, successMessage) {
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const submitBtn = form.querySelector('button[type="submit"]');
+                    if (submitBtn.classList.contains('is-loading')) return;
+                    
+                    submitBtn.classList.add('is-loading');
+                    
+                    setTimeout(() => {
+                        submitBtn.classList.remove('is-loading');
+                        showToast('success', successTitle, successMessage);
+                        form.reset();
+                        if(form.id === 'login-form' || form.id === 'register-form') {
+                            closeModal();
+                        }
+                    }, 1500);
+                });
+            }
+            
+            handleFormSubmit(
+                document.getElementById('beta-form'),
+                'Access Requested',
+                'Thank you! We\'ve added you to the beta waitlist.'
+            );
+            handleFormSubmit(
+                document.getElementById('login-form'),
+                'Login Successful',
+                'Welcome back, developer. Redirecting to your dashboard...'
+            );
+            handleFormSubmit(
+                document.getElementById('register-form'),
+                'Account Registered',
+                'Welcome to Aether! Please check your email for verification.'
+            );
+            
+            // --- AI Chat Demo ---
+            function addChatMessage(message, sender = 'ai') {
+                const messageEl = document.createElement('div');
+                messageEl.className = `chat-message ${sender} flex ${sender === 'user' ? 'justify-end' : 'justify-start'}`;
+                
+                const bubble = document.createElement('div');
+                bubble.className = 'chat-bubble px-5 py-3 rounded-2xl text-white shadow-md';
+                
+                const text = document.createElement('div');
+                text.className = 'chat-text';
+                text.textContent = message;
+                
+                bubble.appendChild(text);
+                messageEl.appendChild(bubble);
+                chatMessages.appendChild(messageEl);
+                
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+
+            function addTypingIndicator() {
+                const indicatorEl = document.createElement('div');
+                indicatorEl.className = 'chat-message ai flex justify-start typing-indicator-wrapper';
+                indicatorEl.innerHTML = `
+                    <div class="chat-bubble typing-indicator px-5 py-3 rounded-2xl text-white shadow-md">
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                    </div>
+                `;
+                chatMessages.appendChild(indicatorEl);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+                return indicatorEl;
+            }
+
+            function getAetherResponse(query) {
+                const responses = {
+                    "what is hedera?": "Hedera is a public, open-source, proof-of-stake network for the decentralized economy. It utilizes the hashgraph consensus algorithm, which is designed to be faster, more secure, and more energy-efficient (carbon-negative) than traditional blockchains.",
+                    "explain hts": "HTS (Hedera Token Service) is a native service on the Hedera network that allows you to configure, mint, and manage tokens (both fungible and non-fungible) with high-throughput and low, fixed-cost transactions, all without needing to deploy complex smart contracts.",
+                    "best coding practice": "A key coding best practice is to write clean, modular, and well-documented code. This includes using meaningful variable names, breaking down complex logic into smaller functions, and writing comments that explain the 'why' behind your code, not just the 'what'.",
+                    "default": "As an AI, I'm processing that request. On the Hedera network, this query would be logged as a verifiable transaction. My knowledge base, fine-tuned on DocsGPT, allows me to provide expert insights on business strategy, code optimization, and network architecture."
+                };
+                const lowerQuery = query.toLowerCase();
+                if (lowerQuery.includes("hedera")) return responses["what is hedera?"];
+                if (lowerQuery.includes("hts")) return responses["explain hts"];
+                if (lowerQuery.includes("coding practice")) return responses["best coding practice"];
+                return responses["default"];
+            }
+
+            async function handleChatSubmit(message) {
+                if (sendBtn.classList.contains('is-loading')) return;
+                
+                const query = message.trim();
+                if (query === '') return;
+                
+                addChatMessage(query, 'user');
+                chatInput.value = '';
+                sendBtn.classList.add('is-loading');
+                
+                const typingIndicator = addTypingIndicator();
+                
+                // Simulate AI response
+                await new Promise(res => setTimeout(res, 1500));
+                
+                const aiResponse = getAetherResponse(query);
+                
+                typingIndicator.remove();
+                addChatMessage(aiResponse, 'ai');
+                sendBtn.classList.remove('is-loading');
+            }
+
+            chatForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                handleChatSubmit(chatInput.value);
+            });
+            
+            suggestionChips.forEach(chip => {
+                chip.addEventListener('click', () => {
+                    const query = chip.textContent.trim();
+                    chatInput.value = query;
+                    handleChatSubmit(query);
+                });
+            });
+
+            chatResetBtn.addEventListener('click', () => {
+                chatMessages.innerHTML = '';
+                addChatMessage(initialBotMessage, 'ai');
+                showToast('info', 'Chat Reset', 'The conversation has been cleared.');
+            });
+
+            // --- Scroll Animations ---
+            const scrollObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const el = entry.target;
+                        const delay = el.dataset.delay || '0s';
+                        el.style.transitionDelay = delay;
+                        el.classList.add('is-visible');
+                        
+                        // Handle count-up animation
+                        if (el.dataset.animate === 'count-up' && !el.dataset.animated) {
+                            animateCountUp(el);
+                            el.dataset.animated = true; // Prevent re-animating
+                        }
+                        
+                        scrollObserver.unobserve(el); // Don't re-animate
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.animate-on-scroll').forEach(el => {
+                scrollObserver.observe(el);
+            });
+
+            // Count-Up Animation
+            function animateCountUp(el) {
+                const targetValue = parseFloat(el.dataset.value);
+                const prefix = el.dataset.prefix || '';
+                const suffix = el.dataset.suffix || '';
+                const decimals = parseInt(el.dataset.decimals) || 0;
+                const duration = 1500;
+                let startTime = null;
+
+                function step(timestamp) {
+                    if (!startTime) startTime = timestamp;
+                    const progress = Math.min((timestamp - startTime) / duration, 1);
+                    let currentValue = progress * targetValue;
+                    
+                    if (progress < 1) {
+                        requestAnimationFrame(step);
+                    } else {
+                        currentValue = targetValue; // Ensure it ends on the exact value
+                    }
+
+                    el.textContent = prefix + currentValue.toFixed(decimals) + suffix;
+                }
+                requestAnimationFrame(step);
+            }
+            
+            // Handle fade-in for non-numeric stats
+            document.querySelectorAll('[data-animate="fade-in"]').forEach(el => {
+                el.style.opacity = 1;
+            });
+
+        });
+    </script>
+
+</body>
+</html>
+
