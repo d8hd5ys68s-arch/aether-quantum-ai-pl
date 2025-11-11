@@ -48,7 +48,7 @@ export default function AvatarUploadPage() {
               const newBlob = await upload(file.name, file, {
                 access: 'public',
                 handleUploadUrl: '/api/avatar/upload',
-                onUploadProgress: ({ loaded, total }) => {
+                onUploadProgress: ({ loaded, total }: { loaded: number; total: number }) => {
                   setProgress(Math.round((loaded / total) * 100));
                 },
               });

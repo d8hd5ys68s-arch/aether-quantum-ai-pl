@@ -20,7 +20,7 @@ export async function POST(request: Request): Promise<NextResponse> {
     const jsonResponse = await handleUpload({
       body,
       request,
-      onBeforeGenerateToken: async (pathname, clientPayload) => {
+      onBeforeGenerateToken: async (pathname: string, clientPayload?: string) => {
         // Optional: Authenticate user before allowing upload
         // const session = await auth();
         // if (!session?.user) {
@@ -48,7 +48,7 @@ export async function POST(request: Request): Promise<NextResponse> {
           }),
         };
       },
-      onUploadCompleted: async ({ blob, tokenPayload }) => {
+      onUploadCompleted: async ({ blob, tokenPayload }: { blob: any; tokenPayload: string }) => {
         // Optional: Save upload record to database
         try {
           const payload = JSON.parse(tokenPayload || '{}');

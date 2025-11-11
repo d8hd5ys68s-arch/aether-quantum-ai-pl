@@ -1,4 +1,5 @@
 import { sql } from '@vercel/postgres';
+import { logger } from '../logger';
 
 export interface User {
   id: number;
@@ -39,6 +40,23 @@ export interface HederaTransaction {
 
 export class Database {
   /**
+   * Execute database query with error handling and logging
+   */
+  private static async executeQuery<T>(
+    operation: string,
+    query: () => Promise<T>
+  ): Promise<T> {
+    try {
+      logger.database(operation);
+      const result = await query();
+      return result;
+    } catch (error: any) {
+      logger.error(`Database error: ${operation}`, error);
+      throw new DatabaseError(`Failed to ${operation}`, error);
+    }
+  }
+
+  /**
    * Create or update a user
    */
   static async upsertUser(data: {
@@ -47,31 +65,39 @@ export class Database {
     password_hash: string;
     display_name?: string;
   }): Promise<User> {
-    const { user_id, email, password_hash, display_name } = data;
+    return this.executeQuery('upsert user', async () => {
+      const { user_id, email, password_hash, display_name } = data;
 
-    const result = await sql<User>`
-      INSERT INTO users (user_id, email, password_hash, display_name)
-      VALUES (${user_id}, ${email}, ${password_hash}, ${display_name || null})
-      ON CONFLICT (user_id)
-      DO UPDATE SET
-        email = EXCLUDED.email,
-        display_name = EXCLUDED.display_name,
-        updated_at = CURRENT_TIMESTAMP
-      RETURNING *
-    `;
+      const result = await sql<User>`
+        INSERT INTO users (user_id, email, password_hash, display_name)
+        VALUES (${user_id}, ${email}, ${password_hash}, ${display_name || null})
+        ON CONFLICT (user_id)
+        DO UPDATE SET
+          email = EXCLUDED.email,
+          display_name = EXCLUDED.display_name,
+          updated_at = CURRENT_TIMESTAMP
+        RETURNING *
+      `;
 
-    return result.rows[0];
+      if (result.rows.length === 0) {
+        throw new Error('Failed to upsert user');
+      }
+
+      return result.rows[0];
+    });
   }
 
   /**
    * Get a user by user_id
    */
   static async getUserById(user_id: string): Promise<User | null> {
-    const result = await sql<User>`
-      SELECT * FROM users WHERE user_id = ${user_id} LIMIT 1
-    `;
+    return this.executeQuery('get user by ID', async () => {
+      const result = await sql<User>`
+        SELECT * FROM users WHERE user_id = ${user_id} LIMIT 1
+      `;
 
-    return result.rows[0] || null;
+      return result.rows[0] || null;
+    });
   }
 
   /**
@@ -253,4 +279,131 @@ export class Database {
       totalCarbonSaved: parseFloat(row.total_carbon_saved),
     };
   }
+
+  /**
+   * Delete old chat messages (cleanup)
+   */
+  static async deleteOldChatMessages(
+    user_id: string,
+    daysToKeep: number = 30
+  ): Promise<number> {
+    return this.executeQuery('delete old chat messages', async () => {
+      const cutoffDate = new Date();
+      cutoffDate.setDate(cutoffDate.getDate() - daysToKeep);
+
+      const result = await sql`
+        DELETE FROM chat_messages
+        WHERE user_id = ${user_id}
+        AND created_at < ${cutoffDate.toISOString()}
+      `;
+
+      return result.rowCount || 0;
+    });
+  }
+
+  /**
+   * Get user statistics
+   */
+  static async getUserStats(user_id: string): Promise<{
+    totalMessages: number;
+    totalTokensUsed: number;
+    totalCost: number;
+    firstMessageAt: Date | null;
+    lastMessageAt: Date | null;
+  }> {
+    return this.executeQuery('get user stats', async () => {
+      const result = await sql`
+        SELECT
+          COUNT(*) as total_messages,
+          COALESCE(SUM(tokens_used), 0) as total_tokens,
+          COALESCE(SUM(cost), 0) as total_cost,
+          MIN(created_at) as first_message,
+          MAX(created_at) as last_message
+        FROM chat_messages
+        WHERE user_id = ${user_id}
+      `;
+
+      const row = result.rows[0];
+      return {
+        totalMessages: parseInt(row.total_messages),
+        totalTokensUsed: parseInt(row.total_tokens),
+        totalCost: parseFloat(row.total_cost),
+        firstMessageAt: row.first_message ? new Date(row.first_message) : null,
+        lastMessageAt: row.last_message ? new Date(row.last_message) : null,
+      };
+    });
+  }
+
+  /**
+   * Test database connection
+   */
+  static async testConnection(): Promise<boolean> {
+    try {
+      await sql`SELECT 1 as test`;
+      logger.info('Database connection successful');
+      return true;
+    } catch (error) {
+      logger.error('Database connection failed', error as Error);
+      return false;
+    }
+  }
+
+  /**
+   * Get database health
+   */
+  static async getHealth(): Promise<{
+    connected: boolean;
+    responseTime: number;
+    activeConnections?: number;
+  }> {
+    const startTime = Date.now();
+
+    try {
+      const result = await sql`
+        SELECT
+          COUNT(*) as active_connections
+        FROM pg_stat_activity
+        WHERE datname = current_database()
+      `;
+
+      const responseTime = Date.now() - startTime;
+
+      return {
+        connected: true,
+        responseTime,
+        activeConnections: parseInt(result.rows[0]?.active_connections || '0'),
+      };
+    } catch (error) {
+      logger.error('Database health check failed', error as Error);
+      return {
+        connected: false,
+        responseTime: Date.now() - startTime,
+      };
+    }
+  }
+}
+
+/**
+ * Custom database error class
+ */
+export class DatabaseError extends Error {
+  constructor(
+    message: string,
+    public originalError?: Error
+  ) {
+    super(message);
+    this.name = 'DatabaseError';
+
+    // Maintain proper stack trace
+    if (Error.captureStackTrace) {
+      Error.captureStackTrace(this, DatabaseError);
+    }
+  }
+}
+
+/**
+ * Type guard for database errors
+ */
+export function isDatabaseError(error: unknown): error is DatabaseError {
+  return error instanceof DatabaseError;
 }
