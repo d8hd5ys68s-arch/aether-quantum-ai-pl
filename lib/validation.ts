@@ -123,7 +123,7 @@ export function validateRequest<T extends z.ZodTypeAny>(
   } catch (error) {
     if (error instanceof z.ZodError) {
       // Format validation errors
-      const formattedErrors = error.errors.map((err) => ({
+      const formattedErrors = error.issues.map((err) => ({
         field: err.path.join('.'),
         message: err.message,
       }));
@@ -146,7 +146,7 @@ export function safeValidateRequest<T extends z.ZodTypeAny>(
   if (result.success) {
     return { success: true, data: result.data };
   } else {
-    const formattedErrors = result.error.errors.map((err) => ({
+    const formattedErrors = result.error.issues.map((err) => ({
       field: err.path.join('.'),
       message: err.message,
     }));

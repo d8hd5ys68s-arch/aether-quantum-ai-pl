@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Toaster } from 'sonner';
 import { ErrorBoundary } from 'react-error-boundary';
 import { ErrorFallback } from '@/components/ErrorFallback';
@@ -9,12 +9,31 @@ import './globals.css';
 import './theme.css';
 import './animations.css';
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+  themeColor: [
+    { media: '(prefers-color-scheme: dark)', color: '#0f0d23' },
+    { media: '(prefers-color-scheme: light)', color: '#0f0d23' },
+  ],
+};
+
 export const metadata: Metadata = {
   title: 'Aether AI - Enterprise-Grade AI Platform',
   description: 'Enterprise-grade artificial intelligence platform built on DocsGPT & Hedera Token Service. Featuring carbon-negative operations, blockchain-verified API tracking, and advanced AI capabilities.',
   keywords: ['AI', 'Blockchain', 'Hedera', 'DocsGPT', 'Enterprise AI', 'Quantum Computing'],
   authors: [{ name: 'Aether AI Team' }],
   referrer: 'strict-origin-when-cross-origin',
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'black-translucent',
+    title: 'Aether AI',
+  },
+  formatDetection: {
+    telephone: false,
+  },
   openGraph: {
     title: 'Aether AI - Enterprise-Grade AI Platform',
     description: 'Revolutionary AI platform powered by DocsGPT and Hedera blockchain technology',

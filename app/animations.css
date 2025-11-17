@@ -437,3 +437,173 @@
     transform: translateY(0);
   }
 }
+
+/* ============================================
+   MOBILE ANIMATION OPTIMIZATIONS
+   Optimized for portrait mode and performance
+   ============================================ */
+
+/* Reduce animation complexity on mobile */
+@media (max-width: 768px) {
+  /* Simplify fade animations */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(15px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  
+  /* Simplify glow effects */
+  @keyframes glow {
+    0%, 100% {
+      box-shadow: 0 0 15px oklch(0.62 0.24 295 / 0.3);
+    }
+    50% {
+      box-shadow: 0 0 30px oklch(0.62 0.24 295 / 0.5);
+    }
+  }
+  
+  /* Faster animations for better UX */
+  .animate-fade-in-up,
+  .animate-slide-in,
+  .animate-scale-in {
+    animation-duration: 0.4s !important;
+  }
+  
+  /* Reduce blur animations */
+  .glass-effect {
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+  }
+  
+  /* Disable expensive morphing */
+  @keyframes morph {
+    0%, 100% {
+      border-radius: 50%;
+      transform: scale(1);
+    }
+  }
+}
+
+/* Portrait-specific optimizations */
+@media (max-width: 768px) and (orientation: portrait) {
+  /* Optimize vertical animations */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Better scroll animations for portrait */
+  .scroll-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  }
+  
+  .scroll-reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* GPU acceleration for smoother animations on mobile */
+@media (max-width: 768px) {
+  .animate-fade-in-up,
+  .animate-slide-in,
+  .animate-scale-in,
+  .animate-float,
+  .glass-card,
+  .btn-gradient {
+    will-change: transform, opacity;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+}
+
+/* Reduced motion for mobile battery saving */
+@media (max-width: 768px) and (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .animate-fade-in-up,
+  .animate-slide-in,
+  .animate-scale-in,
+  .animate-shimmer,
+  .animate-glow,
+  .animate-float,
+  .animate-gradient,
+  .animate-morph {
+    animation: none !important;
+  }
+}
+
+/* Touch interaction animations */
+@media (max-width: 768px) {
+  /* Button press feedback */
+  .btn-gradient:active,
+  .glass-card:active {
+    transform: scale(0.97);
+    transition: transform 0.1s ease-out;
+  }
+  
+  /* Link tap feedback */
+  a:active,
+  button:active {
+    opacity: 0.7;
+  }
+}
+
+/* Optimize particle animations for mobile */
+@media (max-width: 768px) {
+  #particle-overlay {
+    opacity: 0.5; /* Reduce particle visibility */
+  }
+  
+  .aether-blob {
+    filter: blur(60px) !important; /* Less intensive blur */
+    animation-duration: 20s !important; /* Slower animation */
+  }
+}
+
+/* Small screen optimizations */
+@media (max-width: 375px) {
+  /* Minimal animations on very small screens */
+  .animate-fade-in-up,
+  .animate-slide-in,
+  .animate-scale-in {
+    animation-duration: 0.3s !important;
+  }
+  
+  /* Disable complex effects */
+  .glass-effect-light,
+  .glass-effect {
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+  }
+}

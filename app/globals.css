@@ -82,6 +82,17 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  /* Mobile optimizations */
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+/* iOS safe area support */
+@supports (padding-top: env(safe-area-inset-top)) {
+  body {
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -441,4 +452,258 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
   font-size: 2rem;
   color: white;
+}
+/* ========================================
+   Mobile Portrait Mode Optimizations
+   ======================================== */
+
+/* Touch Target Sizes - Minimum 44x44px for accessibility */
+@media (max-width: 768px) {
+  button,
+  a,
+  input,
+  select,
+  textarea {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Improve touch interaction feedback */
+  button:active,
+  a:active {
+    opacity: 0.7;
+    transform: scale(0.98);
+  }
+}
+
+/* Improved Mobile Typography */
+@media (max-width: 768px) {
+  /* Better line heights for readability on small screens */
+  body {
+    line-height: 1.6;
+  }
+  
+  h1 {
+    font-size: clamp(2rem, 8vw, 3.5rem);
+    line-height: 1.1;
+  }
+  
+  h2 {
+    font-size: clamp(1.75rem, 6vw, 2.5rem);
+    line-height: 1.2;
+  }
+  
+  h3 {
+    font-size: clamp(1.5rem, 5vw, 2rem);
+    line-height: 1.3;
+  }
+  
+  p {
+    font-size: clamp(1rem, 3.5vw, 1.125rem);
+    line-height: 1.6;
+  }
+}
+
+/* Mobile Spacing Improvements */
+@media (max-width: 768px) {
+  section {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+  }
+  
+  .glass-card {
+    padding: 1.5rem;
+  }
+}
+
+/* Enhanced Mobile Glassmorphism */
+@media (max-width: 768px) {
+  /* Reduce blur for better performance on mobile */
+  .glass-card {
+    backdrop-filter: blur(16px) saturate(1.5);
+    -webkit-backdrop-filter: blur(16px) saturate(1.5);
+  }
+  
+  .glass-card:hover {
+    backdrop-filter: blur(20px) saturate(1.5);
+    -webkit-backdrop-filter: blur(20px) saturate(1.5);
+  }
+}
+
+/* Mobile Navigation Optimizations */
+@media (max-width: 768px) {
+  nav {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+  
+  .nav-link {
+    padding: 1rem;
+    font-size: 1.125rem;
+  }
+}
+
+/* Mobile Scroll Performance */
+@media (max-width: 768px) {
+  * {
+    /* Enable GPU acceleration */
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    -o-transform: translateZ(0);
+    transform: translateZ(0);
+    
+    /* Optimize scroll performance */
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Reduced Animation for Mobile Battery */
+@media (max-width: 768px) {
+  * {
+    animation-duration: 0.5s !important;
+    transition-duration: 0.3s !important;
+  }
+  
+  /* Disable expensive animations on mobile */
+  @keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+  
+  .text-gradient {
+    animation: gradientShift 12s ease-in-out infinite;
+  }
+}
+
+/* Portrait Orientation Specific Optimizations */
+@media (max-width: 768px) and (orientation: portrait) {
+  /* Optimize for vertical scrolling */
+  html {
+    scroll-behavior: smooth;
+    scroll-snap-type: y proximity;
+  }
+  
+  section {
+    scroll-snap-align: start;
+    scroll-snap-stop: normal;
+  }
+  
+  /* Better use of vertical space */
+  .hero-section {
+    min-height: 100vh;
+    min-height: 100dvh; /* Use dynamic viewport height for mobile browsers */
+  }
+  
+  /* Adjust button sizes for portrait */
+  .btn-gradient,
+  .btn-secondary-outline {
+    padding: 0.875rem 1.75rem;
+    font-size: 1rem;
+  }
+  
+  /* Better chat interface for portrait */
+  .chat-container {
+    height: 500px;
+    max-height: 60vh;
+  }
+}
+
+/* Landscape Orientation on Mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+  /* Reduce vertical spacing in landscape */
+  section {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+  
+  .hero-section {
+    min-height: auto;
+    padding-top: 6rem !important;
+    padding-bottom: 3rem !important;
+  }
+}
+
+/* High DPI Mobile Screens */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  /* Optimize for retina displays */
+  .glass-card {
+    box-shadow: 
+      0 4px 16px rgba(0, 0, 0, 0.3),
+      0 1px 4px rgba(0, 0, 0, 0.2),
+      inset 0 0.5px 0 oklch(1 0 0 / 0.08);
+  }
+  
+  .btn-gradient {
+    box-shadow: 
+      0 0 15px oklch(0.62 0.24 295 / 0.4), 
+      0 0 30px oklch(0.60 0.22 250 / 0.3),
+      0 2px 8px rgba(0, 0, 0, 0.25);
+  }
+}
+
+/* Small Mobile Devices (<= 375px) */
+@media (max-width: 375px) {
+  /* Extra small screen optimizations */
+  .glass-card {
+    padding: 1rem;
+  }
+  
+  h1 {
+    font-size: clamp(1.75rem, 7vw, 2.5rem);
+  }
+  
+  .btn-gradient,
+  .btn-secondary-outline {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9375rem;
+  }
+}
+
+/* Dark mode support for mobile */
+@media (prefers-color-scheme: dark) {
+  body {
+    background: oklch(0.06 0 0);
+  }
+  
+  .glass-card {
+    background: oklch(1 0 0 / 0.05);
+  }
+}
+
+/* Accessibility: Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* PWA Status Bar Padding for iOS */
+@supports (padding-top: constant(safe-area-inset-top)) {
+  body {
+    padding-top: constant(safe-area-inset-top);
+    padding-bottom: constant(safe-area-inset-bottom);
+  }
+}
+
+/* Prevent text size adjustment on mobile */
+html {
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* Better mobile input styling */
+@media (max-width: 768px) {
+  input,
+  textarea,
+  select {
+    font-size: 16px !important; /* Prevents iOS zoom on focus */
+    border-radius: 0.75rem;
+  }
 }
